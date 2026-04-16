@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang='zh-CN'><head><meta charset='UTF-8'/><meta name='viewport' content='width=device-width, initial-scale=1.0'/><title>Research Atelier</title><style>:root{--bg:#fff8fb;--panel:#fffdfd;--panel2:#fff2f6;--line:#f0d5df;--text:#4b323c;--muted:#7b6470;--accent:#b86f90;--accent2:#8e4f69;--gold:#cbaa80;--shadow:0 18px 40px rgba(184,111,144,.12);--shadowSoft:0 10px 24px rgba(184,111,144,.08)}*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:'Inter','PingFang SC','Microsoft YaHei',Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,#fffafc 0%,#fff4f7 54%,#fff1f5 100%);min-height:100vh} body::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle at 18px 18px, rgba(184,111,144,.08) 2px, transparent 2px),radial-gradient(circle at 56px 56px, rgba(184,111,144,.05) 1px, transparent 1px);background-size:80px 80px;opacity:.55} a{color:inherit}.shell{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:24px 18px 54px}.top{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;padding:14px 18px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid var(--line);box-shadow:var(--shadowSoft);position:sticky;top:12px;z-index:8;backdrop-filter:blur(14px);margin-bottom:16px}.brand{display:flex;gap:12px;align-items:center}.seal{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f7e8ef,#fff);border:1px solid var(--line);font-weight:800;color:var(--accent2)}.brand h1{margin:0;font-size:17px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.top-links{display:flex;flex-wrap:wrap;gap:10px}.top-links a{text-decoration:none;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--accent2);box-shadow:var(--shadowSoft)}.hero,.card{background:rgba(255,255,255,.9);border:1px solid rgba(240,213,223,.9);border-radius:28px;box-shadow:var(--shadowSoft)}.hero{padding:26px;overflow:hidden;position:relative;margin-bottom:18px}.hero::before{content:'';position:absolute;right:-90px;top:-90px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, rgba(240,213,223,.8), rgba(240,213,223,0))}.hero h2{margin:0 0 10px;font-family:'Georgia','Times New Roman',serif;font-size:36px;line-height:1.1;max-width:14ch}.hero p{margin:0;color:var(--muted);line-height:1.85;max-width:70ch}.hero .buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.button,.button2,button{appearance:none;border:none;cursor:pointer;text-decoration:none;padding:11px 16px;border-radius:999px;font-weight:800;font-size:14px}.button,button{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 14px 30px rgba(142,79,105,.18)}.button2{background:#fff;color:var(--accent2);border:1px solid var(--line);box-shadow:var(--shadowSoft)}.grid-2,.grid-3,.grid-4{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{padding:18px}.card h3,.card h4{margin:0 0 10px;font-family:'Georgia','Times New Roman',serif}.card h3{font-size:26px}.card h4{font-size:18px}.muted{color:var(--muted);line-height:1.75}.section{margin-top:16px}.section-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:12px}.section-head p{margin:0;color:var(--muted);line-height:1.7}.form-grid,.form-grid-3{display:grid;gap:12px}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}label{display:block;margin-bottom:6px;font-size:13px;font-weight:700;color:var(--accent2)} input,textarea,select{width:100%;padding:12px 13px;border-radius:16px;border:1px solid rgba(240,213,223,.95);background:#fff;color:var(--text);font-family:inherit;font-size:14px} textarea{min-height:110px;resize:vertical}.list{display:grid;gap:12px}.item{padding:14px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,245,248,.86));border:1px solid rgba(240,213,223,.8)} .meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 10px}.tag{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--accent2)} .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.small{font-size:13px;color:var(--muted);line-height:1.7}.empty{padding:16px;border-radius:18px;border:1px dashed var(--line);text-align:center;color:var(--muted);background:rgba(255,255,255,.72)} .stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}.stat{padding:14px;border-radius:18px;background:var(--panel2);border:1px solid rgba(240,213,223,.85)} .stat strong{display:block;font-size:22px;color:var(--accent2);margin-bottom:4px}.footer{margin-top:24px;color:var(--muted);text-align:center;font-size:13px;line-height:1.7}@media (max-width:960px){.grid-2,.grid-3,.grid-4,.form-grid,.form-grid-3,.stat-grid{grid-template-columns:1fr}.hero h2{font-size:30px}}
+/* v13 contrast fix */
+:root{--accent:#e8cad7 !important;--accent-2:#6f4757 !important;--accent-3:#5b3848 !important;--line:#dfc1cd !important;--line-2:#d4afbc !important;--text:#432b35 !important;--ink:#432b35 !important;--muted:#6f5a63 !important;}
+.button,.button-secondary,.button2,button,.top-links a,.quick-nav a,.mini-link,.nav-link,.phase-tag,.pill,.tag,.chip,.eyebrow{
+  color:var(--accent-2) !important;
+  border:1px solid var(--line) !important;
+  background:linear-gradient(180deg,#fffafc 0%,#f7e8ef 100%) !important;
+  box-shadow:0 10px 22px rgba(176,119,144,.10) !important;
+  text-shadow:none !important;
+}
+.button,.button-primary,button:not(.secondary):not(.ghost){
+  color:#5e3a4a !important;
+  background:linear-gradient(180deg,#fff9fc 0%,#f2dde7 100%) !important;
+}
+.top-links a:hover,.quick-nav a:hover,.mini-link:hover,.button:hover,.button-secondary:hover,.button2:hover,button:hover{
+  background:linear-gradient(180deg,#fffdfd 0%,#f6edf2 100%) !important;
+  transform:translateY(-1px);
+}
+.brand-badge,.seal{color:var(--accent-2) !important}
+label,.section-head h3,.hero h2,.panel h2,.panel h3,.card h3,.card h4,.room-card h4,.roadmap-card h4,.note-card h4,.hero-card h3{color:var(--text) !important}
+.hero .lead,.muted,.section-head p,.brand p,.metric-card span,.room-card p,.roadmap-card p,.note-card p{color:var(--muted) !important}
+
+</style>
+<style id="global-contrast-fix-v14">
+:root{
+  --bg:#fbf8fb !important;
+  --panel:#fffdfd !important;
+  --panel-2:#fff7fa !important;
+  --line:#ead7e1 !important;
+  --line-2:#d8b9c8 !important;
+  --text:#35262d !important;
+  --muted:#6a5962 !important;
+  --rose:#f7ebf1 !important;
+  --rose-2:#fdf4f8 !important;
+  --rose-3:#fffafd !important;
+  --accent:#8f5a72 !important;
+  --accent-2:#6e3f52 !important;
+  --accent-3:#563242 !important;
+  --gold:#caa2b6 !important;
+  --green:#8aa395 !important;
+  --ink:#281b21 !important;
+  --shadow:0 18px 40px rgba(88,52,68,.10) !important;
+  --shadow-soft:0 8px 24px rgba(88,52,68,.07) !important;
+}
+html,body{color:var(--text) !important;}
+body{
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 30%),
+    radial-gradient(circle at top right, rgba(255,255,255,.72), transparent 26%),
+    linear-gradient(180deg,#fffbfd 0%,#fbf5f8 48%,#f8f0f4 100%) !important;
+}
+body::before{
+  background-image:
+    radial-gradient(circle at 18px 18px, rgba(143,90,114,.06) 2px, transparent 2px),
+    radial-gradient(circle at 58px 58px, rgba(143,90,114,.03) 1px, transparent 1px) !important;
+}
+h1,h2,h3,h4,h5,h6,strong,.hero h1,.section-head h2,.card h2,.card h3,.post-title,.note-title{
+  color:var(--ink) !important;
+}
+p,.subtle,.small,.muted,.hero p,.section-head p,.footer,.mood-caption,.tiny,.excerpt,.content,.day-title,.callout,.stat small,.routine-item,.task-line,.task-row,.goal-card,.book-card,.journal-card,.mini-item,.empty{
+  color:var(--text) !important;
+}
+.small,.muted,.subtle,.hero p,.section-head p,.footer,.mood-caption,.tiny,.stat small,.day-title,.callout,.empty{
+  color:var(--muted) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.phase,.collection-card,.luxe-link-card,.hero,.nav-wrap,.sidebar .card{
+  border-color:rgba(111,63,82,.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.collection-card,.luxe-link-card{
+  background:rgba(255,255,255,.92) !important;
+}
+.button,button,input[type="submit"],input[type="button"],.action-btn,.primary-btn,.cta,.hero .button{
+  background:linear-gradient(135deg,#8f5a72,#6e3f52) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(110,63,82,.18) !important;
+  box-shadow:0 10px 24px rgba(110,63,82,.18) !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.button:hover,button:hover,input[type="submit"]:hover,input[type="button"]:hover,.action-btn:hover,.primary-btn:hover,.cta:hover{
+  filter:brightness(1.03) !important;
+}
+.button.secondary,button.secondary,.button.ghost,button.ghost,
+.nav-link,.tag,.pill,.phase-tag,.ribbon,.chip,.status-pill,.toolbar .chip,.badge,
+.control-row a.button.secondary,.control-row button.secondary,.control-row a.button.ghost,.control-row button.ghost{
+  background:#fff7fb !important;
+  color:#5c3244 !important;
+  border:1px solid rgba(111,63,82,.22) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.nav-link:hover,.button.secondary:hover,button.secondary:hover,.button.ghost:hover,button.ghost:hover{
+  background:#fffdfd !important;
+  color:#4f2b3a !important;
+}
+a,.link,summary,.tab,.menu-link{color:#6e3f52 !important;}
+a:hover,.link:hover,summary:hover,.tab:hover,.menu-link:hover{color:#4f2b3a !important;}
+label,legend{color:#6e3f52 !important;}
+input,textarea,select{
+  background:#fffdfd !important;
+  color:var(--text) !important;
+  border:1px solid rgba(111,63,82,.20) !important;
+}
+input::placeholder,textarea::placeholder{color:#8c7781 !important;}
+input:focus,textarea:focus,select:focus{
+  border-color:#8f5a72 !important;
+  box-shadow:0 0 0 4px rgba(143,90,114,.12) !important;
+}
+.task-line,.pill,.tag,.phase-tag,.ribbon,.stat,.mini-card,.callout,.day-cell.free{
+  background:#fff8fb !important;
+}
+progress,.progress{background:#f3e7ee !important;}
+.progress > span,.bar,.progress-fill{background:linear-gradient(90deg,#a76b86,#7a455c) !important;}
+hr,.divider{border-color:rgba(111,63,82,.12) !important;}
+::selection{background:#edd8e3;color:#2b1d23;}
+</style>
+
+
+<style id="global-link-audit-v15-style">
+  .global-return-dock{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:160px}
+  .global-return-dock a,.global-return-dock button{appearance:none;border:none;text-decoration:none;display:flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.2px;box-shadow:0 10px 24px rgba(87,41,58,.16);cursor:pointer;transition:transform .18s ease, box-shadow .18s ease}
+  .global-return-dock a:hover,.global-return-dock button:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(87,41,58,.2)}
+  .global-return-dock .primary-link{background:linear-gradient(135deg,#8f4f67,#704052);color:#fff;border:1px solid rgba(255,255,255,.18)}
+  .global-return-dock .secondary-link{background:#fff7fb;color:#5f3445;border:1.5px solid rgba(143,79,103,.3)}
+  .global-return-dock .ghost-link{background:#f9ecf3;color:#5f3445;border:1px solid rgba(143,79,103,.22)}
+  @media (max-width: 700px){
+    .global-return-dock{left:12px;right:12px;bottom:12px;max-width:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .global-return-dock a,.global-return-dock button{padding:11px 10px;font-size:12px}
+  }
+</style>
+</head><body><div class='shell'><div class='top'><div class='brand'><div class='seal'>R</div><div><h1>Research Atelier</h1><p>paper library · notes · reproduction · reflection</p></div></div><div class='top-links'><a href='index.html'>个人主页</a><a href='index_calendar_seeded_v11.html'>执行总控台</a><a href='research_atelier.html'>科研面板</a><a href='career_hq.html'>跳槽作战板</a><a href='application_atlas.html'>申请规划</a></div></div><section class='hero'><h2>把论文、复现、结果与心得，收成一个真正能长期沉淀的研究工作台。</h2><p>这里把科研全流程拆成四块：Paper Library、Research Notebook、Reproduction Board 和 Reflection Journal。PDF 最适合以 GitHub 仓库相对路径或在线链接的形式登记在这里，真正的 PDF 文件可以放在仓库的 papers 目录里。</p><div class='buttons'><a class='button' href='#papers'>论文库</a><a class='button2' href='#projects'>复现项目</a><a class='button2' href='study_notes_seeded_v11.html'>专业学习笔记</a></div><div class='stat-grid' id='stats'></div></section>
+<section class='section card' id='papers'><div class='section-head'><div><h3>Paper Library</h3><p>记录论文标题、学科、分支、PDF 路径、代码路径、状态和你的三句话摘要。</p></div></div><form id='paperForm'><div class='form-grid-3'><div><label>标题</label><input id='paperTitle' required></div><div><label>学科</label><input id='paperSubject' placeholder='Statistics / Finance / ML'></div><div><label>学科分支</label><input id='paperBranch' placeholder='asset pricing / stochastic process'></div><div><label>年份</label><input id='paperYear' placeholder='2026'></div><div><label>PDF 路径 / 链接</label><input id='paperPdf' placeholder='papers/xxx.pdf 或链接'></div><div><label>代码路径 / 仓库</label><input id='paperCode' placeholder='github repo / local path'></div><div><label>状态</label><select id='paperStatus'><option>待读</option><option>已读</option><option>复现中</option><option>已复现</option><option>可扩展</option></select></div><div><label>作者 / 会议</label><input id='paperAuthor'></div><div><label>关键词</label><input id='paperKeywords' placeholder='factor, bayes, derivatives'></div></div><div style='margin-top:12px'><label>摘要 / 为什么值得做</label><textarea id='paperSummary'></textarea></div><div class='actions'><button type='submit'>添加论文</button></div></form><div class='list' id='paperList' style='margin-top:14px'></div></section>
+<section class='section grid-2'><div class='card'><div class='section-head'><div><h3>Research Notebook</h3><p>围绕问题、公式、实验和卡点写结构化笔记。</p></div></div><form id='noteForm'><div class='form-grid'><div><label>笔记标题</label><input id='noteTitle' required></div><div><label>关联论文 / 项目</label><input id='notePaper'></div><div><label>学科分支</label><input id='noteBranch'></div><div><label>日期</label><input id='noteDate' type='date'></div></div><div style='margin-top:12px'><label>内容</label><textarea id='noteBody' placeholder='问题、假设、公式、疑问、下一步'></textarea></div><div class='actions'><button type='submit'>保存研究笔记</button></div></form><div class='list' id='noteList' style='margin-top:14px'></div></div><div class='card' id='projects'><div class='section-head'><div><h3>Reproduction Board</h3><p>把复现代码、数据、结果图、指标和结论摆清楚。</p></div></div><form id='projectForm'><div class='form-grid'><div><label>项目名</label><input id='projectTitle' required></div><div><label>关联论文</label><input id='projectPaper'></div><div><label>代码路径</label><input id='projectRepo'></div><div><label>数据来源</label><input id='projectData'></div><div><label>状态</label><select id='projectStatus'><option>未开始</option><option>进行中</option><option>跑通基线</option><option>结果待改进</option><option>已完成</option></select></div><div><label>结果截图 / 文件</label><input id='projectResult'></div></div><div style='margin-top:12px'><label>指标 / 结果摘要</label><textarea id='projectMetrics'></textarea></div><div style='margin-top:12px'><label>结论 / 下一步</label><textarea id='projectConclusion'></textarea></div><div class='actions'><button type='submit'>添加复现项目</button></div></form><div class='list' id='projectList' style='margin-top:14px'></div></div></section>
+<section class='section card'><div class='section-head'><div><h3>Reflection Journal</h3><p>记录你自己的判断：值不值得做、难点是什么、下一步怎么推进。</p></div></div><form id='reflectionForm'><div class='form-grid'><div><label>主题</label><input id='reflectionTitle' required></div><div><label>学科分支</label><input id='reflectionBranch'></div></div><div style='margin-top:12px'><label>心得</label><textarea id='reflectionBody'></textarea></div><div class='actions'><button type='submit'>保存心得</button></div></form><div class='list' id='reflectionList' style='margin-top:14px'></div></section>
+<div class='footer'>和原站点共用同一份本地存储；可公开的内容上线到 GitHub Pages，私密内容继续保留在本地。</div></div><script>
+const APP_KEY='rosePinkQuantDashboard_v4_seeded_2026_04_08_frm';
+function uid(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
+function today(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+function base(){return {papers:[{id:uid(),title:'Bayesian asset pricing notes',subject:'Finance',branch:'Bayesian factor model',year:'2026',pdf:'papers/bayesian_asset_pricing.pdf',code:'repo/research/bayes-factor',status:'待读',author:'',keywords:'bayes,factor,asset pricing',summary:'准备作为研究面板的第一条样板，先做摘要与可复现路径。'}],researchNotes:[{id:uid(),title:'因子研究与学术文献的连接点',paper:'',branch:'factor investing',date:today(),body:'把工业界因子研究中的鲁棒性检验、样本外验证和学术文献里的 asset pricing / market efficiency 视角对齐。'}],researchProjects:[{id:uid(),title:'A股因子研究复现总表',paper:'多篇因子文献',repo:'repo/research/a-share-factors',data:'内部数据 / 日频因子库',status:'进行中',result:'results/factor_board.png',metrics:'IC、rankIC、分组、稳健性',conclusion:'先把最稳定的母信号与经济逻辑沉淀下来。'}],reflections:[{id:uid(),title:'什么论文值得花时间复现',branch:'research method',body:'优先做那些能映射到你长期研究兴趣、又能为职业路径提供作品集的论文；不是所有论文都值得完整复现。'}]}}
+function load(){try{const raw=localStorage.getItem(APP_KEY);const b=base();if(!raw) return b;const p=JSON.parse(raw);return {...b,...p,papers:p.papers||b.papers,researchNotes:p.researchNotes||b.researchNotes,researchProjects:p.researchProjects||b.researchProjects,reflections:p.reflections||b.reflections};}catch(e){console.error(e);return base();}}
+let state=load();
+function save(){localStorage.setItem(APP_KEY, JSON.stringify(state));render();}
+function esc(s){return (s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function del(key,id){state[key]=state[key].filter(x=>x.id!==id);save();}
+function list(id,items,key,view){const el=document.getElementById(id);if(!items.length){el.innerHTML='<div class="empty">这里还没有内容。</div>';return;}el.innerHTML=items.map(view).join('');el.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>del(b.dataset.key,b.dataset.remove));}
+function render(){document.getElementById('stats').innerHTML=`<div class='stat'><strong>${state.papers.length}</strong><span>已登记论文</span></div><div class='stat'><strong>${state.researchNotes.length}</strong><span>研究笔记</span></div><div class='stat'><strong>${state.researchProjects.length}</strong><span>复现项目</span></div><div class='stat'><strong>${state.reflections.length}</strong><span>研究心得</span></div>`;
+list('paperList',state.papers,'papers',x=>`<article class='item'><h4>${esc(x.title)}</h4><div class='meta'><span class='tag'>${esc(x.subject||'未分类')}</span><span class='tag'>${esc(x.branch||'未分支')}</span><span class='tag'>${esc(x.status||'')}</span><span class='tag'>${esc(x.year||'')}</span></div><div class='small'>${esc(x.summary||'')}</div><div class='small' style='margin-top:8px'>PDF：${esc(x.pdf||'')}<br/>代码：${esc(x.code||'')}</div><div class='actions'><button data-key='papers' data-remove='${x.id}'>删除</button></div></article>`);
+list('noteList',state.researchNotes,'researchNotes',x=>`<article class='item'><h4>${esc(x.title)}</h4><div class='meta'><span class='tag'>${esc(x.branch||'')}</span><span class='tag'>${esc(x.date||'')}</span><span class='tag'>${esc(x.paper||'独立笔记')}</span></div><div class='small'>${esc(x.body||'')}</div><div class='actions'><button data-key='researchNotes' data-remove='${x.id}'>删除</button></div></article>`);
+list('projectList',state.researchProjects,'researchProjects',x=>`<article class='item'><h4>${esc(x.title)}</h4><div class='meta'><span class='tag'>${esc(x.status||'')}</span><span class='tag'>${esc(x.paper||'')}</span></div><div class='small'>代码：${esc(x.repo||'')}<br/>数据：${esc(x.data||'')}<br/>结果：${esc(x.result||'')}</div><div class='small' style='margin-top:8px'>指标：${esc(x.metrics||'')}<br/>结论：${esc(x.conclusion||'')}</div><div class='actions'><button data-key='researchProjects' data-remove='${x.id}'>删除</button></div></article>`);
+list('reflectionList',state.reflections,'reflections',x=>`<article class='item'><h4>${esc(x.title)}</h4><div class='meta'><span class='tag'>${esc(x.branch||'')}</span></div><div class='small'>${esc(x.body||'')}</div><div class='actions'><button data-key='reflections' data-remove='${x.id}'>删除</button></div></article>`);
+}
+document.getElementById('noteDate').value=today();
+document.getElementById('paperForm').onsubmit=(e)=>{e.preventDefault();state.papers.unshift({id:uid(),title:paperTitle.value,subject:paperSubject.value,branch:paperBranch.value,year:paperYear.value,pdf:paperPdf.value,code:paperCode.value,status:paperStatus.value,author:paperAuthor.value,keywords:paperKeywords.value,summary:paperSummary.value});e.target.reset();save();};
+document.getElementById('noteForm').onsubmit=(e)=>{e.preventDefault();state.researchNotes.unshift({id:uid(),title:noteTitle.value,paper:notePaper.value,branch:noteBranch.value,date:noteDate.value||today(),body:noteBody.value});e.target.reset();noteDate.value=today();save();};
+document.getElementById('projectForm').onsubmit=(e)=>{e.preventDefault();state.researchProjects.unshift({id:uid(),title:projectTitle.value,paper:projectPaper.value,repo:projectRepo.value,data:projectData.value,status:projectStatus.value,result:projectResult.value,metrics:projectMetrics.value,conclusion:projectConclusion.value});e.target.reset();save();};
+document.getElementById('reflectionForm').onsubmit=(e)=>{e.preventDefault();state.reflections.unshift({id:uid(),title:reflectionTitle.value,branch:reflectionBranch.value,body:reflectionBody.value});e.target.reset();save();};
+render();
+</script></body></html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manifestation Journal · Ivory Maison Atlas</title>
+  <style>
+    :root{
+      --bg:#f6f2ec; --panel:#fffdf9; --panel-2:#f8f3ed; --line:#e7ddd2; --line-2:#d7c8bc;
+      --text:#4d403b; --muted:#7b7069; --accent:#ba968f; --accent-2:#98756f; --accent-3:#856760;
+      --gold:#c6af8e; --green:#98a89a; --ink:#413633;
+      --shadow:0 18px 45px rgba(103,85,78,.10); --shadow-soft:0 10px 28px rgba(103,85,78,.06);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:
+      radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 28%),
+      radial-gradient(circle at top right, rgba(255,255,255,.78), transparent 24%),
+      linear-gradient(180deg,#f8f4ef 0%,#f5efe8 55%,#f3ece6 100%);min-height:100vh}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:
+      radial-gradient(circle at 18px 18px, rgba(159,132,123,.07) 2px, transparent 2px),
+      radial-gradient(circle at 58px 58px, rgba(159,132,123,.035) 1px, transparent 1px);background-size:80px 80px;opacity:.7}
+    .shell{position:relative;z-index:1;max-width:1460px;margin:0 auto;padding:24px 18px 56px}
+    .hero{position:relative;overflow:hidden;border-radius:34px;padding:30px 26px;background:linear-gradient(135deg, rgba(255,255,255,.96), rgba(248,242,235,.95));border:1.5px solid rgba(151,120,112,.18);box-shadow:var(--shadow);margin-bottom:18px}
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:999px;background:radial-gradient(circle, rgba(218,203,192,.56), rgba(218,203,192,0));width:240px;height:240px;pointer-events:none}
+    .hero::before{top:-75px;right:-70px}.hero::after{left:-84px;bottom:-100px}
+    .ribbon{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.92);border:1px solid var(--line);box-shadow:var(--shadow-soft);color:var(--accent-2);font-size:12px;letter-spacing:.45px;text-transform:uppercase;margin-bottom:14px}
+    h1,h2,h3,.hero h1{font-family:Georgia,"Times New Roman","Songti SC",serif;letter-spacing:.02em;color:var(--ink)}
+    h1{margin:0 0 10px;font-size:clamp(30px,4vw,48px);line-height:1.12}
+    .hero p{margin:0;max-width:1000px;color:var(--muted);line-height:1.9;font-size:15px}
+    .control-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .button,button{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:10px 15px;font-size:14px;font-weight:700;color:#fff;text-decoration:none;background:linear-gradient(135deg,#ab8780,#8f6d67);box-shadow:0 10px 24px rgba(120,95,88,.14);transition:.2s ease}
+    .button.secondary,button.secondary{color:var(--accent-2);background:#fff;border:1px solid rgba(151,120,112,.18);box-shadow:none}
+    .button.ghost,button.ghost{color:var(--muted);background:#f6efe8;box-shadow:none}
+    .button:hover,button:hover{transform:translateY(-1px)}
+    .mood-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+    .mood-card{background:#fff;border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:12px;box-shadow:var(--shadow-soft)}
+    .mood-photo{aspect-ratio:4/5;border-radius:16px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+    .mood-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,252,248,.82))}
+    .mood-photo.one{background-image:linear-gradient(180deg, rgba(255,251,253,.28), rgba(236,227,217,.42)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 760'%3E%3Crect width='600' height='760' fill='%23fbf7f2'/%3E%3Crect x='66' y='86' width='468' height='584' rx='34' fill='%23fffdf9' stroke='%23e6ddd2' stroke-width='8'/%3E%3Ccircle cx='426' cy='196' r='74' fill='%23ece2d8'/%3E%3Cpath d='M130 572c72-128 151-218 238-270 42 44 79 96 109 161-52 50-112 92-180 130-74 17-116 12-167-21Z' fill='%23dacdc2'/%3E%3C/svg%3E")}
+    .mood-photo.two{background-image:linear-gradient(180deg, rgba(255,251,253,.25), rgba(230,221,214,.42)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 760'%3E%3Crect width='600' height='760' fill='%23faf6f0'/%3E%3Crect x='84' y='116' width='432' height='536' rx='40' fill='%23fffdf9' stroke='%23e6ddd2' stroke-width='8'/%3E%3Cpath d='M158 555c53-119 110-199 181-248 58 34 113 84 149 157-43 49-92 88-154 124-84 11-128 6-176-33Z' fill='%23ddd1c7'/%3E%3Ccircle cx='406' cy='220' r='70' fill='%23ece2d8'/%3E%3C/svg%3E")}
+    .mood-photo.three{background-image:linear-gradient(180deg, rgba(255,251,253,.25), rgba(227,217,210,.42)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 760'%3E%3Crect width='600' height='760' fill='%23fbf7f2'/%3E%3Crect x='58' y='82' width='484' height='596' rx='34' fill='%23fffdf9' stroke='%23e6ddd2' stroke-width='8'/%3E%3Crect x='120' y='140' width='360' height='436' rx='28' fill='%23f6f0ea'/%3E%3Cpath d='M154 506h292c-21-96-72-173-148-242-73 66-116 140-144 242Z' fill='%23dbcec4'/%3E%3C/svg%3E")}
+    .mood-photo.four{background-image:linear-gradient(180deg, rgba(255,251,253,.25), rgba(227,217,210,.42)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 760'%3E%3Crect width='600' height='760' fill='%23faf6f0'/%3E%3Crect x='72' y='104' width='456' height='560' rx='40' fill='%23fffdf9' stroke='%23e5dbcf' stroke-width='8'/%3E%3Cpath d='M190 536h224c42-67 58-133 44-199-48-29-92-42-158-42-36 82-63 145-110 241Z' fill='%23ddd0c6'/%3E%3Ccircle cx='405' cy='208' r='64' fill='%23ece2d8'/%3E%3C/svg%3E")}
+    .mood-caption{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.7}
+    .layout{display:grid;grid-template-columns:380px 1fr;gap:18px;margin-top:18px}
+    .sidebar{display:flex;flex-direction:column;gap:16px}
+    .card{background:rgba(255,255,255,.92);border:1.2px solid rgba(151,120,112,.14);border-radius:28px;box-shadow:var(--shadow-soft);padding:18px;position:relative;overflow:hidden}
+    .card::before{content:"";position:absolute;inset:0 auto auto 0;height:6px;width:100%;background:linear-gradient(90deg, rgba(151,120,112,.04), rgba(151,120,112,.16), rgba(151,120,112,.04))}
+    .card h2,.card h3{margin:0 0 12px;line-height:1.24}
+    .subtle{font-size:13px;color:var(--muted);line-height:1.75}
+    label{display:block;font-size:13px;font-weight:700;color:var(--accent-2);margin-bottom:6px}
+    input,textarea,select{width:100%;padding:12px 13px;border-radius:16px;border:1px solid rgba(151,120,112,.18);background:rgba(255,255,255,.96);color:var(--text);font-size:14px;outline:none;transition:.2s ease;font-family:inherit}
+    input:focus,textarea:focus,select:focus{border-color:rgba(143,109,103,.45);box-shadow:0 0 0 4px rgba(186,150,143,.10)}
+    textarea{min-height:130px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .post-list,.note-list,.grid-list,.gallery,.masonry{display:grid;gap:14px}
+    .post-card,.note-card,.grid-card{background:#fff;border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft)}
+    .tag,.pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#f6efe8;border:1px solid rgba(151,120,112,.16);color:var(--accent-2);font-size:12px;font-weight:700}
+    .small{font-size:12px;line-height:1.65;color:var(--muted)}
+    .empty{padding:18px;border:1px dashed rgba(151,120,112,.24);border-radius:20px;color:var(--muted);text-align:center;background:rgba(255,255,255,.6)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:14px}.toolbar .field{min-width:180px;flex:1}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 12px}
+    .excerpt,.content,.body-text{font-size:14px;line-height:1.85;color:#63534d;white-space:pre-wrap}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .stat{background:#fff;border:1px solid rgba(151,120,112,.14);border-radius:20px;padding:14px;box-shadow:var(--shadow-soft)}
+    .stat .v{font-size:26px;font-weight:700;color:var(--accent-2);margin-top:6px;font-family:Georgia,"Times New Roman",serif}
+    .luxe-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+    .luxe-link-card{display:block;text-decoration:none;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,242,235,.90));border:1px solid rgba(151,120,112,.14);border-radius:22px;padding:16px;box-shadow:var(--shadow-soft);color:inherit;transition:.2s ease}
+    .luxe-link-card:hover{transform:translateY(-2px)}
+    .luxe-link-card strong{display:block;color:var(--ink);margin-bottom:6px;font-family:Georgia,"Times New Roman",serif}
+    .luxe-link-card span{font-size:13px;color:var(--muted);line-height:1.7}
+    .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;line-height:1.8}
+    .image-box{aspect-ratio:4/5;border-radius:18px;background:linear-gradient(180deg,#fff,#f5eee7);border:1px dashed rgba(151,120,112,.18);display:flex;align-items:center;justify-content:center;color:var(--muted);overflow:hidden}
+    .image-box img{width:100%;height:100%;object-fit:cover;display:block}
+    .masonry{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));align-items:start}
+    .masonry .grid-card{padding:12px}
+    .photo-caption{padding:10px 6px 4px}
+    .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:1080px){.layout,.mood-strip,.stats,.check-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
+    @media (max-width:640px){.shell{padding:14px 12px 40px}.hero{padding:22px 18px}}
+</style>
+
+<style id="global-contrast-fix-v14">
+:root{
+  --bg:#fbf8fb !important;
+  --panel:#fffdfd !important;
+  --panel-2:#fff7fa !important;
+  --line:#ead7e1 !important;
+  --line-2:#d8b9c8 !important;
+  --text:#35262d !important;
+  --muted:#6a5962 !important;
+  --rose:#f7ebf1 !important;
+  --rose-2:#fdf4f8 !important;
+  --rose-3:#fffafd !important;
+  --accent:#8f5a72 !important;
+  --accent-2:#6e3f52 !important;
+  --accent-3:#563242 !important;
+  --gold:#caa2b6 !important;
+  --green:#8aa395 !important;
+  --ink:#281b21 !important;
+  --shadow:0 18px 40px rgba(88,52,68,.10) !important;
+  --shadow-soft:0 8px 24px rgba(88,52,68,.07) !important;
+}
+html,body{color:var(--text) !important;}
+body{
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 30%),
+    radial-gradient(circle at top right, rgba(255,255,255,.72), transparent 26%),
+    linear-gradient(180deg,#fffbfd 0%,#fbf5f8 48%,#f8f0f4 100%) !important;
+}
+body::before{
+  background-image:
+    radial-gradient(circle at 18px 18px, rgba(143,90,114,.06) 2px, transparent 2px),
+    radial-gradient(circle at 58px 58px, rgba(143,90,114,.03) 1px, transparent 1px) !important;
+}
+h1,h2,h3,h4,h5,h6,strong,.hero h1,.section-head h2,.card h2,.card h3,.post-title,.note-title{
+  color:var(--ink) !important;
+}
+p,.subtle,.small,.muted,.hero p,.section-head p,.footer,.mood-caption,.tiny,.excerpt,.content,.day-title,.callout,.stat small,.routine-item,.task-line,.task-row,.goal-card,.book-card,.journal-card,.mini-item,.empty{
+  color:var(--text) !important;
+}
+.small,.muted,.subtle,.hero p,.section-head p,.footer,.mood-caption,.tiny,.stat small,.day-title,.callout,.empty{
+  color:var(--muted) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.phase,.collection-card,.luxe-link-card,.hero,.nav-wrap,.sidebar .card{
+  border-color:rgba(111,63,82,.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.collection-card,.luxe-link-card{
+  background:rgba(255,255,255,.92) !important;
+}
+.button,button,input[type="submit"],input[type="button"],.action-btn,.primary-btn,.cta,.hero .button{
+  background:linear-gradient(135deg,#8f5a72,#6e3f52) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(110,63,82,.18) !important;
+  box-shadow:0 10px 24px rgba(110,63,82,.18) !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.button:hover,button:hover,input[type="submit"]:hover,input[type="button"]:hover,.action-btn:hover,.primary-btn:hover,.cta:hover{
+  filter:brightness(1.03) !important;
+}
+.button.secondary,button.secondary,.button.ghost,button.ghost,
+.nav-link,.tag,.pill,.phase-tag,.ribbon,.chip,.status-pill,.toolbar .chip,.badge,
+.control-row a.button.secondary,.control-row button.secondary,.control-row a.button.ghost,.control-row button.ghost{
+  background:#fff7fb !important;
+  color:#5c3244 !important;
+  border:1px solid rgba(111,63,82,.22) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.nav-link:hover,.button.secondary:hover,button.secondary:hover,.button.ghost:hover,button.ghost:hover{
+  background:#fffdfd !important;
+  color:#4f2b3a !important;
+}
+a,.link,summary,.tab,.menu-link{color:#6e3f52 !important;}
+a:hover,.link:hover,summary:hover,.tab:hover,.menu-link:hover{color:#4f2b3a !important;}
+label,legend{color:#6e3f52 !important;}
+input,textarea,select{
+  background:#fffdfd !important;
+  color:var(--text) !important;
+  border:1px solid rgba(111,63,82,.20) !important;
+}
+input::placeholder,textarea::placeholder{color:#8c7781 !important;}
+input:focus,textarea:focus,select:focus{
+  border-color:#8f5a72 !important;
+  box-shadow:0 0 0 4px rgba(143,90,114,.12) !important;
+}
+.task-line,.pill,.tag,.phase-tag,.ribbon,.stat,.mini-card,.callout,.day-cell.free{
+  background:#fff8fb !important;
+}
+progress,.progress{background:#f3e7ee !important;}
+.progress > span,.bar,.progress-fill{background:linear-gradient(90deg,#a76b86,#7a455c) !important;}
+hr,.divider{border-color:rgba(111,63,82,.12) !important;}
+::selection{background:#edd8e3;color:#2b1d23;}
+</style>
+
+
+<style id="global-link-audit-v15-style">
+  .global-return-dock{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:160px}
+  .global-return-dock a,.global-return-dock button{appearance:none;border:none;text-decoration:none;display:flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.2px;box-shadow:0 10px 24px rgba(87,41,58,.16);cursor:pointer;transition:transform .18s ease, box-shadow .18s ease}
+  .global-return-dock a:hover,.global-return-dock button:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(87,41,58,.2)}
+  .global-return-dock .primary-link{background:linear-gradient(135deg,#8f4f67,#704052);color:#fff;border:1px solid rgba(255,255,255,.18)}
+  .global-return-dock .secondary-link{background:#fff7fb;color:#5f3445;border:1.5px solid rgba(143,79,103,.3)}
+  .global-return-dock .ghost-link{background:#f9ecf3;color:#5f3445;border:1px solid rgba(143,79,103,.22)}
+  @media (max-width: 700px){
+    .global-return-dock{left:12px;right:12px;bottom:12px;max-width:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .global-return-dock a,.global-return-dock button{padding:11px 10px;font-size:12px}
+  }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="ribbon">manifestation journal · maison atlas</div>
+      <h1>显化日记 · 愿景、证据与行动</h1>
+      <p>把愿望写成一个有现实感的系统：不是空心的许愿，而是更细致的愿景、更明确的证据，以及更小但更真实的下一步。</p>
+      <div class="control-row">
+        <a class="button" href="index_calendar_seeded_v11.html">返回主控台</a>
+        <a class="button secondary" href="journal_seeded_v11.html">日志页</a>
+        <a class="button secondary" href="study_notes_seeded_v11.html">学习笔记</a>
+        <a class="button secondary" href="photo_wall_seeded_v11.html">照片墙</a>
+      </div>
+      <div class="mood-strip">
+        <div class="mood-card"><div class="mood-photo one"></div><div class="mood-caption">奶油纸张、白纱窗帘、石色桌面和低饱和的野心。</div></div>
+        <div class="mood-card"><div class="mood-photo two"></div><div class="mood-caption">现在整体设计更偏 ivory, champagne, greige, dusty rose。</div></div>
+        <div class="mood-card"><div class="mood-photo three"></div><div class="mood-caption">不是高饱和的甜，而是更轻、更静、更像私人站点。</div></div>
+        <div class="mood-card"><div class="mood-photo four"></div><div class="mood-caption">把记录做得像 museum archive，也像温柔的操作系统。</div></div>
+      </div>
+      <div class="luxe-links"><a class="luxe-link-card" href="index_calendar_seeded_v11.html"><strong>主控台</strong><span>回到总控台、日历、目标、FRM 与执行系统。</span></a><a class="luxe-link-card" href="journal_seeded_v11.html"><strong>日志页</strong><span>像博客一样写生活、进展与当下状态。</span></a><a class="luxe-link-card" href="workflow_notes_seeded_v11.html"><strong>工作流</strong><span>把 SOP、研究流程、投递流程写清楚。</span></a><a class="luxe-link-card" href="finance_panel_seeded_v11.html"><strong>财务页</strong><span>预算、账户、现金流和财务目标。</span></a><a class="luxe-link-card" href="study_notes_seeded_v11.html"><strong>学习笔记</strong><span>专业学习、公式与 Markdown / LaTeX。</span></a><a class="luxe-link-card" href="reading_lounge_seeded_v11.html"><strong>读书札记</strong><span>非专业阅读、句子和书后感。</span></a><a class="luxe-link-card" href="travel_atelier_seeded_v11.html"><strong>旅行页</strong><span>愿望清单、路线、旅后回忆。</span></a><a class="luxe-link-card" href="photo_wall_seeded_v11.html"><strong>照片墙</strong><span>上传图片，把生活碎片做成视觉档案。</span></a><a class="luxe-link-card" href="fitness_checkin_seeded_v11.html"><strong>健身打卡</strong><span>训练、照片、状态与坚持感。</span></a><a class="luxe-link-card" href="manifestation_journal_seeded_v11.html"><strong>显化日记</strong><span>愿景、感受、证据与行动。</span></a><a class="luxe-link-card" href="divination_journal_seeded_v11.html"><strong>占卜日记</strong><span>问题、结果、解读与验证。</span></a></div>
+    </section>
+    <div class="layout">
+      <aside class="sidebar">
+        
+<section class="card">
+  <h2>写 / 编辑显化条目</h2>
+  <p class="subtle">这里不是空泛许愿。把愿景、情绪、现实中的证据和下一步动作写在一起，会更有力量。</p>
+  <form id="maniForm">
+    <input type="hidden" id="maniId" />
+    <div class="form-grid">
+      <div><label for="maniDate">日期</label><input id="maniDate" type="date" /></div>
+      <div><label for="maniArea">领域</label><select id="maniArea"><option>事业</option><option>学业</option><option>财务</option><option>健康</option><option>关系</option><option>居所</option><option>气质与生活方式</option></select></div>
+    </div>
+    <div style="margin-top:12px"><label for="maniAff">一句肯定句</label><input id="maniAff" required placeholder="例如：我正在成为一个稳定、漂亮、强大的研究者。" /></div>
+    <div style="margin-top:12px"><label for="maniVision">愿景</label><textarea id="maniVision" placeholder="写下你想要的场景、气氛和具体细节。"></textarea></div>
+    <div style="margin-top:12px"><label for="maniEvidence">已经出现的证据</label><textarea id="maniEvidence" placeholder="写现实里已经发生的迹象和证据。"></textarea></div>
+    <div style="margin-top:12px"><label for="maniNext">下一步动作</label><textarea id="maniNext" placeholder="给愿景一个现实动作。"></textarea></div>
+    <div class="control-row"><button type="submit">保存显化条目</button><button class="secondary" type="button" id="maniCancelBtn">取消编辑</button></div>
+  </form>
+</section>
+
+        
+<section class="card"><h2>建议写法</h2><div class="small">愿景不要只写结果，可以写气味、光线、谈吐、场合、衣着、身体状态、空间质感，再落到一条今天就能执行的动作。</div></section>
+<section class="card"><h2>显化统计</h2><div class="stats" id="maniStats"></div></section>
+
+      </aside>
+      <main>
+        <section class="card"><h2>显化日记</h2><div class="grid-list" id="maniList"></div></section>
+      </main>
+    </div>
+    <div class="footer">maison atlas v11 · all in one personal operating system</div>
+  </div>
+  <script>
+    
+    const APP_KEY = "rosePinkQuantDashboard_v4_seeded_2026_04_08_frm";
+    const escapeHTML = (text)=>String(text||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+    const uid = ()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
+    const isoToday = ()=>{const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+    const normTags = (value)=>String(value||'').split(',').map(x=>x.trim()).filter(Boolean);
+    function readAsDataURL(file){
+      return new Promise((resolve,reject)=>{
+        if(!file) return resolve('');
+        const reader = new FileReader();
+        reader.onload = ()=>resolve(String(reader.result||''));
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    
+    const DEFAULT_MANI = [
+      {id:'m1',date:'2026-04-20',area:'事业',aff:'我会进入更高级、更适合我的平台。',vision:'我在一个更高质量的团队里，表达更稳，研究更硬，气质更松弛。',evidence:'最近已经开始更系统地整理作品和节奏。',next:'今天继续把学习与输出系统完善一页。'},
+      {id:'m2',date:'2026-04-21',area:'气质与生活方式',aff:'我的生活会越来越有质感。',vision:'空间安静、衣着简洁、说话缓慢、身体轻盈，系统本身也很美。',evidence:'页面已经从高粉调改成更奶油、更有留白。',next:'今天拍一张让自己喜欢的桌面照。'}
+    ];
+    function loadState(){try{const raw=localStorage.getItem(APP_KEY);const parsed=raw?JSON.parse(raw):{};return {...parsed, manifestations:Array.isArray(parsed.manifestations)&&parsed.manifestations.length?parsed.manifestations:[...DEFAULT_MANI]};}catch(e){return {manifestations:[...DEFAULT_MANI]}}}
+    let state = loadState();
+    function saveState(){localStorage.setItem(APP_KEY, JSON.stringify(state)); renderAll()}
+    function renderStats(){const arr=state.manifestations||[]; const stats=[['条目总数',arr.length],['领域数',new Set(arr.map(x=>x.area).filter(Boolean)).size],['本月记录',arr.filter(x=>String(x.date||'').slice(0,7)===isoToday().slice(0,7)).length]]; maniStats.innerHTML=stats.map(([k,v])=>`<div class="stat"><div class="small">${k}</div><div class="v">${v}</div></div>`).join('');}
+    function renderList(){const arr=[...(state.manifestations||[])].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))); maniList.innerHTML=arr.length?arr.map(item=>`<article class="grid-card"><h3>${escapeHTML(item.aff)}</h3><div class="meta"><span class="tag">${escapeHTML(item.area||'')}</span><span class="small">${escapeHTML(item.date||'')}</span></div><div class="body-text"><strong>愿景</strong>
+${escapeHTML(item.vision||'')}</div><div class="body-text"><strong>证据</strong>
+${escapeHTML(item.evidence||'')}</div><div class="body-text"><strong>下一步</strong>
+${escapeHTML(item.next||'')}</div><div class="control-row"><button class="secondary" type="button" onclick="editMani('${item.id}')">编辑</button><button class="ghost" type="button" onclick="removeMani('${item.id}')">删除</button></div></article>`).join(''):'<div class="empty">还没有显化条目。</div>';}
+    function renderAll(){renderStats(); renderList();}
+    function resetForm(){maniForm.reset(); maniId.value=''; maniDate.value=isoToday();}
+    function editMani(id){const item=(state.manifestations||[]).find(x=>x.id===id); if(!item) return; maniId.value=item.id; maniDate.value=item.date||isoToday(); maniArea.value=item.area||'事业'; maniAff.value=item.aff||''; maniVision.value=item.vision||''; maniEvidence.value=item.evidence||''; maniNext.value=item.next||''; window.scrollTo({top:0,behavior:'smooth'});}
+    function removeMani(id){state.manifestations=(state.manifestations||[]).filter(x=>x.id!==id); saveState();}
+    maniForm.addEventListener('submit',e=>{e.preventDefault(); const item={id:maniId.value||uid(),date:maniDate.value||isoToday(),area:maniArea.value,aff:maniAff.value.trim(),vision:maniVision.value.trim(),evidence:maniEvidence.value.trim(),next:maniNext.value.trim()}; if(!item.aff) return; const arr=state.manifestations||[]; const idx=arr.findIndex(x=>x.id===item.id); if(idx>=0) arr[idx]=item; else arr.unshift(item); state.manifestations=arr; saveState(); resetForm();});
+    maniCancelBtn.addEventListener('click', resetForm); resetForm(); renderAll();
+
+  </script>
+</body>
+</html>
