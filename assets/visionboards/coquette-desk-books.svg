@@ -1,0 +1,25 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200'>
+<defs>
+  <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'>
+    <stop offset='0%' stop-color='#fffafb'/>
+    <stop offset='100%' stop-color='#f8eef2'/>
+  </linearGradient>
+  <filter id='s' x='-20%' y='-20%' width='140%' height='140%'>
+    <feDropShadow dx='0' dy='18' stdDeviation='16' flood-color='#cfb4c0' flood-opacity='.18'/>
+  </filter>
+</defs>
+<rect width='900' height='1200' fill='url(#bg)'/>
+<rect x='48' y='44' width='804' height='1112' rx='44' fill='#fffdfd' stroke='#efd9e1' stroke-width='6'/>
+
+<rect x='106' y='108' width='688' height='984' rx='34' fill='#fffafc' filter='url(#s)'/>
+<rect x='144' y='150' width='612' height='282' rx='24' fill='#fff' stroke='#e8d6de'/>
+<rect x='188' y='510' width='216' height='330' rx='22' fill='#f9eef2' stroke='#e8d6de'/>
+<rect x='446' y='510' width='268' height='330' rx='22' fill='#faf5f1' stroke='#e8d6de'/>
+<rect x='210' y='542' width='172' height='36' rx='10' fill='#f3c8d7'/>
+<rect x='210' y='592' width='152' height='36' rx='10' fill='#e8bccf'/>
+<rect x='210' y='642' width='136' height='36' rx='10' fill='#f5d9e3'/>
+<circle cx='568' cy='628' r='48' fill='#f4d8e3'/><circle cx='612' cy='668' r='42' fill='#eec9d8'/><circle cx='542' cy='690' r='40' fill='#f7e4eb'/>
+<rect x='192' y='892' width='500' height='120' rx='20' fill='#fff' stroke='#e8d6de'/>
+<text x='220' y='950' fill='#91556e' font-family='Georgia' font-size='38'>notes, margins, little rituals</text>
+<text x='220' y='990' fill='#b08496' font-family='Georgia' font-size='22'>soft desk, sharp thinking</text>
+</svg>

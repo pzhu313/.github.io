@@ -1,0 +1,23 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200'>
+<defs>
+  <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'>
+    <stop offset='0%' stop-color='#fffafb'/>
+    <stop offset='100%' stop-color='#f8eef2'/>
+  </linearGradient>
+  <filter id='s' x='-20%' y='-20%' width='140%' height='140%'>
+    <feDropShadow dx='0' dy='18' stdDeviation='16' flood-color='#cfb4c0' flood-opacity='.18'/>
+  </filter>
+</defs>
+<rect width='900' height='1200' fill='url(#bg)'/>
+<rect x='48' y='44' width='804' height='1112' rx='44' fill='#fffdfd' stroke='#efd9e1' stroke-width='6'/>
+
+<rect x='102' y='108' width='696' height='986' rx='34' fill='#fffafc' filter='url(#s)'/>
+<rect x='150' y='152' width='600' height='332' rx='24' fill='#f6eaf0' stroke='#e8d6de'/>
+<rect x='182' y='220' width='536' height='182' rx='18' fill='#fff' stroke='#ead8df'/>
+<circle cx='600' cy='312' r='50' fill='#f3d8e1'/><path d='M228 378h250c42-60 50-104 24-136-66 6-152 32-274 136Z' fill='#efc6d5'/>
+<rect x='176' y='536' width='548' height='160' rx='22' fill='#fff' stroke='#e8d6de'/>
+<text x='204' y='602' fill='#91576e' font-family='Georgia' font-size='40'>travel atelier</text>
+<text x='204' y='646' fill='#b08496' font-family='Georgia' font-size='22'>hotel stationery, museum map, train morning</text>
+<rect x='212' y='750' width='490' height='234' rx='22' fill='#faf3f6' stroke='#e8d6de'/>
+<rect x='254' y='786' width='170' height='138' rx='18' fill='#f1d5df'/><rect x='472' y='786' width='180' height='138' rx='18' fill='#ead1b9'/>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200'>
+<defs>
+  <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'>
+    <stop offset='0%' stop-color='#fffafb'/>
+    <stop offset='100%' stop-color='#f8eef2'/>
+  </linearGradient>
+  <filter id='s' x='-20%' y='-20%' width='140%' height='140%'>
+    <feDropShadow dx='0' dy='18' stdDeviation='16' flood-color='#cfb4c0' flood-opacity='.18'/>
+  </filter>
+</defs>
+<rect width='900' height='1200' fill='url(#bg)'/>
+<rect x='48' y='44' width='804' height='1112' rx='44' fill='#fffdfd' stroke='#efd9e1' stroke-width='6'/>
+
+<rect x='108' y='110' width='684' height='980' rx='34' fill='#fff9fb' filter='url(#s)'/>
+<circle cx='680' cy='200' r='78' fill='#f1dce6'/>
+<path d='M250 430c90-62 178-94 268-84 16 78-12 150-74 220-106-22-170-70-194-136Z' fill='#ead0db'/>
+<rect x='160' y='560' width='580' height='178' rx='24' fill='#fff' stroke='#e8d6de'/>
+<text x='188' y='632' fill='#93596f' font-family='Georgia' font-size='42'>moon diary</text>
+<text x='188' y='680' fill='#b18496' font-family='Georgia' font-size='24'>candles, cards, silk ribbons, tiny omens</text>
+<rect x='190' y='796' width='170' height='184' rx='22' fill='#fcf5f8' stroke='#e8d6de'/>
+<rect x='204' y='846' width='28' height='86' rx='14' fill='#f5df89'/><rect x='240' y='826' width='28' height='106' rx='14' fill='#f4cfd9'/><rect x='276' y='856' width='28' height='76' rx='14' fill='#f3bfcf'/>
+<rect x='400' y='796' width='290' height='184' rx='22' fill='#faf3f6' stroke='#e8d6de'/>
+<path d='M442 878c42-24 98-42 144-42s102 18 144 42c-34 20-94 48-144 48s-110-28-144-48Z' fill='#f1d6df'/>
+<circle cx='558' cy='876' r='20' fill='#e8bed0'/>
+</svg>

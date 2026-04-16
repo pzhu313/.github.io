@@ -1,0 +1,29 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200'>
+<defs>
+  <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'>
+    <stop offset='0%' stop-color='#fffafb'/>
+    <stop offset='100%' stop-color='#f8eef2'/>
+  </linearGradient>
+  <filter id='s' x='-20%' y='-20%' width='140%' height='140%'>
+    <feDropShadow dx='0' dy='18' stdDeviation='16' flood-color='#cfb4c0' flood-opacity='.18'/>
+  </filter>
+</defs>
+<rect width='900' height='1200' fill='url(#bg)'/>
+<rect x='48' y='44' width='804' height='1112' rx='44' fill='#fffdfd' stroke='#efd9e1' stroke-width='6'/>
+
+<rect x='100' y='100' width='700' height='260' rx='28' fill='#fff6f8' filter='url(#s)'/>
+<circle cx='160' cy='970' r='20' fill='#f0d7e0'/><circle cx='210' cy='1002' r='15' fill='#f0d7e0'/><circle cx='250' cy='960' r='24' fill='#f0d7e0'/><circle cx='298' cy='996' r='16' fill='#f0d7e0'/>
+<path d='M450 260c-60-82-136-112-192-94 18 78 82 135 178 148M450 260c60-82 136-112 192-94-18 78-82 135-178 148' fill='#f1c9d8'/>
+<ellipse cx='450' cy='278' rx='56' ry='44' fill='#eab8cd'/>
+<path d='M420 320c-22 126-66 214-130 300 98-28 166-62 212-112 10-60-14-125-82-188Z' fill='#f3d5e0'/>
+<path d='M480 320c22 126 66 214 130 300-98-28-166-62-212-112-10-60 14-125 82-188Z' fill='#f0cede'/>
+<rect x='120' y='420' width='300' height='240' rx='26' fill='#fff' stroke='#edd7df'/>
+<text x='150' y='488' fill='#9a627c' font-family='Georgia' font-size='40'>coquette</text>
+<text x='150' y='534' fill='#b07f95' font-family='Georgia' font-size='28'>bows · blush · ballet</text>
+<rect x='480' y='430' width='220' height='320' rx='110' fill='#f6e7ec' stroke='#edd7df'/>
+<rect x='540' y='482' width='96' height='150' rx='20' fill='#fdfbfd' stroke='#e9d1da'/>
+<rect x='565' y='454' width='48' height='36' rx='12' fill='#f3c2d3'/>
+<rect x='188' y='724' width='520' height='154' rx='24' fill='#fbf1f4' stroke='#edd7df'/>
+<text x='216' y='786' fill='#8b556d' font-family='Georgia' font-size='34'>peonies · pearls · perfume</text>
+<text x='216' y='834' fill='#ab8092' font-family='Georgia' font-size='22'>a soft editorial vision board</text>
+</svg>
