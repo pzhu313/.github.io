@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison Journal · Ivory Maison Atelier</title>
+  <style>
+    :root{
+      --bg:#fff8fb;
+      --panel:#fffdfd;
+      --panel-2:#fff1f6;
+      --line:#f4c8da;
+      --text:#53323f;
+      --muted:#8e6775;
+      --accent:#e98db2;
+      --accent-2:#d86d99;
+      --gold:#d7b17a;
+      --shadow:0 10px 30px rgba(206,129,160,.12);
+      --shadow-soft:0 6px 20px rgba(206,129,160,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.88), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,255,255,.76), transparent 26%),
+        linear-gradient(180deg,#fffafc 0%,#fff4f8 46%,#fff0f6 100%);
+      min-height:100vh;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle at 18px 18px, rgba(233,141,178,.08) 2px, transparent 2px),
+        radial-gradient(circle at 58px 58px, rgba(233,141,178,.05) 1px, transparent 1px);
+      background-size:80px 80px;
+      opacity:.7;
+    }
+    .shell{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:24px 18px 56px}
+    .hero{
+      position:relative;overflow:hidden;border-radius:34px;padding:30px 26px;
+      background:linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,241,246,.96));
+      border:1.5px solid rgba(233,141,178,.26);box-shadow:var(--shadow);margin-bottom:18px;
+    }
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:999px;background:radial-gradient(circle, rgba(247,198,215,.72), rgba(247,198,215,0));width:240px;height:240px;pointer-events:none}
+    .hero::before{top:-75px;right:-70px}.hero::after{left:-84px;bottom:-100px}
+    .ribbon{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.92);border:1px solid var(--line);box-shadow:var(--shadow-soft);color:var(--accent-2);font-size:12px;letter-spacing:.45px;text-transform:uppercase;margin-bottom:14px}
+    h1{margin:0 0 10px;font-size:clamp(30px,4vw,48px);line-height:1.12;color:#6b4253}
+    .hero p{margin:0;max-width:920px;color:var(--muted);line-height:1.9;font-size:15px}
+    .control-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .button,button{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:10px 15px;font-size:14px;font-weight:700;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 20px rgba(216,109,153,.18);transition:.2s ease}
+    .button.secondary,button.secondary{color:var(--accent-2);background:#fff;border:1px solid rgba(233,141,178,.36);box-shadow:none}
+    .button:hover,button:hover{transform:translateY(-1px)}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .card{background:rgba(255,255,255,.9);border:1.2px solid rgba(233,141,178,.26);border-radius:28px;box-shadow:var(--shadow-soft);padding:18px;position:relative;overflow:hidden}
+    .card::before{content:"";position:absolute;inset:0 auto auto 0;height:6px;width:100%;background:linear-gradient(90deg, rgba(233,141,178,.05), rgba(233,141,178,.22), rgba(233,141,178,.05))}
+    .card h2,.card h3{margin:0 0 12px;line-height:1.24}
+    .subtle{font-size:13px;color:var(--muted);line-height:1.75}
+    .mood-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+    .mood-card{background:#fff;border:1px solid rgba(233,141,178,.18);border-radius:24px;padding:12px;box-shadow:var(--shadow-soft)}
+    .mood-photo{aspect-ratio:4/5;border-radius:16px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+    .mood-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,250,252,.76))}
+    .mood-photo.one{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(248,217,230,.22)), url('assets/visionboards/coquette-bows-perfume.svg')}
+    .mood-photo.two{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(246,220,231,.22)), url('assets/visionboards/coquette-paris-postcards.svg')}
+    .mood-photo.three{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(247,216,229,.22)), url('assets/visionboards/coquette-reading-lounge.svg')}
+    .mood-photo.four{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(247,216,229,.22)), url('assets/visionboards/coquette-ballet-slippers.svg')}
+    .mood-caption{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.7}
+    .layout{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:18px}
+    .sidebar{display:flex;flex-direction:column;gap:16px}
+    label{display:block;font-size:13px;font-weight:700;color:var(--accent-2);margin-bottom:6px}
+    input,textarea,select{width:100%;padding:12px 13px;border-radius:16px;border:1px solid rgba(233,141,178,.3);background:rgba(255,255,255,.95);color:var(--text);font-size:14px;outline:none;transition:.2s ease;font-family:inherit}
+    input:focus,textarea:focus,select:focus{border-color:rgba(216,109,153,.55);box-shadow:0 0 0 4px rgba(233,141,178,.12)}
+    textarea{min-height:120px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .post-list{display:grid;gap:14px}
+    .post-card{background:#fff;border:1px solid rgba(233,141,178,.2);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft)}
+    .post-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 12px}
+    .tag{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#fbe7ef;border:1px solid rgba(233,141,178,.2);color:var(--accent-2);font-size:12px;font-weight:700}
+    .small{font-size:12px;line-height:1.65;color:var(--muted)}
+    .excerpt{font-size:14px;line-height:1.85;color:#6f4a59;margin:0 0 10px}
+    .content{font-size:14px;line-height:1.9;color:var(--text);white-space:pre-wrap}
+    .empty{padding:18px;border:1px dashed rgba(233,141,178,.35);border-radius:20px;color:var(--muted);text-align:center;background:rgba(255,255,255,.6)}
+    .mini-list{display:grid;gap:10px}
+    .mini-item{background:#fff;border:1px solid rgba(233,141,178,.18);border-radius:20px;padding:12px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:14px}
+    .toolbar .field{min-width:180px;flex:1}
+    .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;line-height:1.8}
+    @media (max-width:1080px){.grid,.layout,.mood-strip{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
+    @media (max-width:640px){.shell{padding:14px 12px 40px}.hero{padding:22px 18px}}
+  </style>
+
+    <style id="v11-theme-override">
+      :root{
+        --bg:#f6f2ec !important;
+        --panel:#fffdf9 !important;
+        --panel-2:#f8f3ed !important;
+        --line:#e7ddd2 !important;
+        --line-2:#d7c8bc !important;
+        --text:#4d403b !important;
+        --muted:#7b7069 !important;
+        --rose:#efe5dc !important;
+        --rose-2:#f4ece5 !important;
+        --rose-3:#fbf7f2 !important;
+        --accent:#ba968f !important;
+        --accent-2:#98756f !important;
+        --accent-3:#856760 !important;
+        --gold:#c6af8e !important;
+        --green:#98a89a !important;
+        --ink:#413633 !important;
+        --shadow:0 18px 45px rgba(103,85,78,.10) !important;
+        --shadow-soft:0 10px 28px rgba(103,85,78,.06) !important;
+      }
+      body{
+        background:
+          radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 28%),
+          radial-gradient(circle at top right, rgba(255,255,255,.76), transparent 24%),
+          linear-gradient(180deg,#f8f4ef 0%,#f5efe8 54%,#f3ece6 100%) !important;
+      }
+      body::before{
+        background-image:
+          radial-gradient(circle at 18px 18px, rgba(159,132,123,.07) 2px, transparent 2px),
+          radial-gradient(circle at 58px 58px, rgba(159,132,123,.035) 1px, transparent 1px) !important;
+      }
+      h1,h2,h3,.hero h1,.section-head h2,.card h2,.card h3,.note-title,.post-title{
+        font-family: Georgia, "Times New Roman", "Songti SC", serif !important;
+        letter-spacing:.02em;
+      }
+      .hero{
+        background:
+          linear-gradient(135deg, rgba(255,255,255,.96), rgba(248,242,235,.95)),
+          linear-gradient(135deg, rgba(233,224,214,.24), rgba(255,255,255,0)) !important;
+        border-color: rgba(151,120,112,.18) !important;
+      }
+      .hero::before,.hero::after{
+        background:radial-gradient(circle, rgba(218,203,192,.56), rgba(218,203,192,0)) !important;
+      }
+      .ribbon,.tag,.pill,.phase-tag,.stat,.nav-wrap,.button.secondary,button.secondary{
+        border-color: rgba(151,120,112,.18) !important;
+      }
+      .ribbon,.tag,.pill,.phase-tag,.nav-link,.button.secondary,button.secondary{color:var(--accent-2) !important}
+      .button,button{
+        background:linear-gradient(135deg,#ab8780,#8f6d67) !important;
+        box-shadow:0 10px 24px rgba(120,95,88,.14) !important;
+      }
+      .button.ghost,button.ghost{background:#f6efe8 !important;color:var(--muted) !important}
+      .nav-wrap,.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card{
+        backdrop-filter: blur(10px);
+      }
+      .nav-wrap{
+        background:rgba(255,252,248,.78) !important;
+      }
+      .nav-link{
+        background:rgba(241,234,226,.8) !important;
+        border:1px solid rgba(151,120,112,.14) !important;
+      }
+      .nav-link:hover{background:#fffdf9 !important}
+      .card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card{border-color: rgba(151,120,112,.14) !important}
+      .card::before,.hero .ribbon::after{opacity:.75}
+      .mood-photo::after{background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,252,248,.82)) !important}
+      .hero p,.section-head p,.subtle,.small,.mood-caption,.footer{color:var(--muted) !important}
+      .luxe-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:16px}
+      .luxe-link-card{display:block;text-decoration:none;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(248,242,235,.88));border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft);color:inherit;transition:.22s ease}
+      .luxe-link-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+      .luxe-link-card strong{display:block;color:var(--ink);font-size:16px;margin-bottom:8px;font-family:Georgia,"Times New Roman","Songti SC",serif}
+      .luxe-link-card span{display:block;color:var(--muted);font-size:13px;line-height:1.8}
+      .collection-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+      .collection-card{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(249,244,238,.92));border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft)}
+      .collection-card h3{margin:0 0 8px;color:var(--ink)}
+      .collection-card p{margin:0;color:var(--muted);line-height:1.8;font-size:14px}
+      .editorial-soft{position:relative;overflow:hidden}
+      .editorial-soft::after{content:"";position:absolute;inset:auto -20% -40% auto;width:180px;height:180px;border-radius:999px;background:radial-gradient(circle, rgba(207,190,178,.28), rgba(207,190,178,0));pointer-events:none}
+      @media (max-width:900px){.luxe-links,.collection-grid{grid-template-columns:1fr}}
+    </style>
+
+
+<style id="global-contrast-fix-v14">
+:root{
+  --bg:#fbf8fb !important;
+  --panel:#fffdfd !important;
+  --panel-2:#fff7fa !important;
+  --line:#ead7e1 !important;
+  --line-2:#d8b9c8 !important;
+  --text:#35262d !important;
+  --muted:#6a5962 !important;
+  --rose:#f7ebf1 !important;
+  --rose-2:#fdf4f8 !important;
+  --rose-3:#fffafd !important;
+  --accent:#8f5a72 !important;
+  --accent-2:#6e3f52 !important;
+  --accent-3:#563242 !important;
+  --gold:#caa2b6 !important;
+  --green:#8aa395 !important;
+  --ink:#281b21 !important;
+  --shadow:0 18px 40px rgba(88,52,68,.10) !important;
+  --shadow-soft:0 8px 24px rgba(88,52,68,.07) !important;
+}
+html,body{color:var(--text) !important;}
+body{
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 30%),
+    radial-gradient(circle at top right, rgba(255,255,255,.72), transparent 26%),
+    linear-gradient(180deg,#fffbfd 0%,#fbf5f8 48%,#f8f0f4 100%) !important;
+}
+body::before{
+  background-image:
+    radial-gradient(circle at 18px 18px, rgba(143,90,114,.06) 2px, transparent 2px),
+    radial-gradient(circle at 58px 58px, rgba(143,90,114,.03) 1px, transparent 1px) !important;
+}
+h1,h2,h3,h4,h5,h6,strong,.hero h1,.section-head h2,.card h2,.card h3,.post-title,.note-title{
+  color:var(--ink) !important;
+}
+p,.subtle,.small,.muted,.hero p,.section-head p,.footer,.mood-caption,.tiny,.excerpt,.content,.day-title,.callout,.stat small,.routine-item,.task-line,.task-row,.goal-card,.book-card,.journal-card,.mini-item,.empty{
+  color:var(--text) !important;
+}
+.small,.muted,.subtle,.hero p,.section-head p,.footer,.mood-caption,.tiny,.stat small,.day-title,.callout,.empty{
+  color:var(--muted) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.phase,.collection-card,.luxe-link-card,.hero,.nav-wrap,.sidebar .card{
+  border-color:rgba(111,63,82,.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.collection-card,.luxe-link-card{
+  background:rgba(255,255,255,.92) !important;
+}
+.button,button,input[type="submit"],input[type="button"],.action-btn,.primary-btn,.cta,.hero .button{
+  background:linear-gradient(135deg,#8f5a72,#6e3f52) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(110,63,82,.18) !important;
+  box-shadow:0 10px 24px rgba(110,63,82,.18) !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.button:hover,button:hover,input[type="submit"]:hover,input[type="button"]:hover,.action-btn:hover,.primary-btn:hover,.cta:hover{
+  filter:brightness(1.03) !important;
+}
+.button.secondary,button.secondary,.button.ghost,button.ghost,
+.nav-link,.tag,.pill,.phase-tag,.ribbon,.chip,.status-pill,.toolbar .chip,.badge,
+.control-row a.button.secondary,.control-row button.secondary,.control-row a.button.ghost,.control-row button.ghost{
+  background:#fff7fb !important;
+  color:#5c3244 !important;
+  border:1px solid rgba(111,63,82,.22) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.nav-link:hover,.button.secondary:hover,button.secondary:hover,.button.ghost:hover,button.ghost:hover{
+  background:#fffdfd !important;
+  color:#4f2b3a !important;
+}
+a,.link,summary,.tab,.menu-link{color:#6e3f52 !important;}
+a:hover,.link:hover,summary:hover,.tab:hover,.menu-link:hover{color:#4f2b3a !important;}
+label,legend{color:#6e3f52 !important;}
+input,textarea,select{
+  background:#fffdfd !important;
+  color:var(--text) !important;
+  border:1px solid rgba(111,63,82,.20) !important;
+}
+input::placeholder,textarea::placeholder{color:#8c7781 !important;}
+input:focus,textarea:focus,select:focus{
+  border-color:#8f5a72 !important;
+  box-shadow:0 0 0 4px rgba(143,90,114,.12) !important;
+}
+.task-line,.pill,.tag,.phase-tag,.ribbon,.stat,.mini-card,.callout,.day-cell.free{
+  background:#fff8fb !important;
+}
+progress,.progress{background:#f3e7ee !important;}
+.progress > span,.bar,.progress-fill{background:linear-gradient(90deg,#a76b86,#7a455c) !important;}
+hr,.divider{border-color:rgba(111,63,82,.12) !important;}
+::selection{background:#edd8e3;color:#2b1d23;}
+</style>
+
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="ribbon">🎀 maison journal · rose pink coquette diary</div>
+      <h1>日志页面 · 像博客一样记录你的长期成长</h1>
+      <p>这页是单独的日志空间：更像私人博客、手账和阶段随笔。你可以写下学习节奏、备考情绪、读书札记、策略灵感、桌面状态和每个阶段的微小顿悟。它和主控台共用同一份本地数据。</p>
+      <div class="control-row">
+        <a class="button" href="index_calendar_seeded_v11.html">返回主控台</a>
+        <a class="button secondary" href="workflow_notes_seeded_v11.html">工作流笔记页</a>
+        <a class="button secondary" href="finance_panel_seeded_v11.html">财务管理页</a>
+        <a class="button secondary" href="study_notes_seeded_v11.html">学习笔记页</a>
+        <a class="button secondary" href="#editorSection">写一篇新日志</a>
+      </div>
+      <div class="control-row"><a class="button secondary" href="index_calendar_seeded_v11.html">主控台</a><a class="button secondary" href="workflow_notes_seeded_v11.html">工作流</a><a class="button secondary" href="finance_panel_seeded_v11.html">财务</a><a class="button secondary" href="study_notes_seeded_v11.html">学习笔记</a><a class="button secondary" href="reading_lounge_seeded_v11.html">读书札记</a><a class="button secondary" href="travel_atelier_seeded_v11.html">旅行页</a><a class="button secondary" href="photo_wall_seeded_v11.html">照片墙</a><a class="button secondary" href="fitness_checkin_seeded_v11.html">健身打卡</a><a class="button secondary" href="manifestation_journal_seeded_v11.html">显化日记</a><a class="button secondary" href="divination_journal_seeded_v11.html">占卜日记</a></div>
+      <div class="mood-strip">
+        <div class="mood-card"><div class="mood-photo one"></div><div class="mood-caption">奶油色晨光、白玫瑰、翻开的笔记和低饱和的野心。</div></div>
+        <div class="mood-card"><div class="mood-photo two"></div><div class="mood-caption">法式公寓感学习角：静、亮、柔软，但非常有执行力。</div></div>
+        <div class="mood-card"><div class="mood-photo three"></div><div class="mood-caption">像芭蕾练功一样复盘：动作重复、细节修正、优雅稳定。</div></div>
+        <div class="mood-card"><div class="mood-photo four"></div><div class="mood-caption">把今天的情绪、公式、进展和灵感写成会连载的博客。</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="card" id="editorSection">
+          <h2>写 / 编辑日志</h2>
+          <p class="subtle">可以把这页当成“带审美的成长档案”。写完会自动保存在浏览器本地。</p>
+          <form id="postForm">
+            <input type="hidden" id="postId" />
+            <div class="form-grid">
+              <div>
+                <label for="postDate">日期</label>
+                <input id="postDate" type="date" />
+              </div>
+              <div>
+                <label for="postMood">状态</label>
+                <select id="postMood">
+                  <option value="高能">高能</option>
+                  <option value="稳态" selected>稳态</option>
+                  <option value="柔软而锋利">柔软而锋利</option>
+                  <option value="需要调整">需要调整</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-top:12px;">
+              <label for="postTitle">标题</label>
+              <input id="postTitle" required placeholder="例如：今天把难题做成了一朵白玫瑰" />
+            </div>
+            <div style="margin-top:12px;">
+              <label for="postTags">标签</label>
+              <input id="postTags" placeholder="用逗号分隔，例如：FRM, 数学分析, coquette" />
+            </div>
+            <div style="margin-top:12px;">
+              <label for="postExcerpt">摘要</label>
+              <textarea id="postExcerpt" placeholder="一句能当封面导语的摘要。"></textarea>
+            </div>
+            <div style="margin-top:12px;">
+              <label for="postContent">正文</label>
+              <textarea id="postContent" placeholder="写今天的学习、感受、桌面、节奏、顿悟、读书内容、计划变化。"></textarea>
+            </div>
+            <div class="control-row">
+              <button type="submit">保存日志</button>
+              <button class="secondary" type="button" id="cancelEditBtn">取消编辑</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>筛选与提醒</h2>
+          <div class="toolbar">
+            <div class="field">
+              <label for="searchInput">搜索</label>
+              <input id="searchInput" placeholder="搜索标题、正文、标签" />
+            </div>
+            <div class="field">
+              <label for="tagFilter">标签筛选</label>
+              <select id="tagFilter"><option value="">全部标签</option></select>
+            </div>
+          </div>
+          <div class="small">写法参考：一半像博客，一半像实验室笔记。可以写情绪，但最后最好落回一个清晰的进展、问题或下一步。</div>
+        </section>
+
+        <section class="card">
+          <h2>从主面板同步来的碎片</h2>
+          <div class="small" style="margin-bottom:12px;">这里会自动读取主控台里最近的复盘和读书心得，让你的日志页更像一个完整的成长站点。</div>
+          <div class="mini-list" id="dashboardSnippets"></div>
+        </section>
+
+        <section class="card">
+          <h2>继续逛其它页面</h2>
+          <div class="small" style="margin-bottom:12px;">把这套系统当成一个小型个人站：日志是表达，工作流是方法，财务是现实支撑。</div>
+          <div class="control-row">
+            <a class="button secondary" href="workflow_notes_seeded_v11.html">打开工作流笔记页</a>
+            <a class="button secondary" href="finance_panel_seeded_v11.html">打开财务管理页</a>
+            <a class="button secondary" href="study_notes_seeded_v11.html">打开学习笔记页</a>
+          </div>
+        </section>
+      </aside>
+
+      <main>
+        <section class="card">
+          <h2>最近日志</h2>
+          <div class="post-list" id="postList"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      maison journal · 和主控台共用浏览器本地数据 · 适合写成长期连载的私人博客
+    </div>
+  </div>
+
+  <script>
+    const APP_KEY = "rosePinkQuantDashboard_v4_seeded_2026_04_08_frm";
+    const DEFAULT_POSTS = [
+      {
+        id:"journal_seed_1",
+        date:"2026-04-20",
+        title:"把 2026 的春天做成一张会发光的作战表",
+        mood:"柔软而锋利",
+        tags:["开篇","愿景","coquette"],
+        excerpt:"今天开始，我想把长期目标写成像博客一样的东西：既能执行，也能被反复翻看。",
+        content:"今天起，这个页面不只是任务板，而是我自己的 maison journal。数学、量化、FRM、面试准备、身体管理，都应该是一种高标准但不粗糙的生活方式。我要让自己的计划表既有锋利度，也有审美。不是用力过猛地燃烧，而是像练功一样，把所有基本功做成漂亮、稳定、可持续的日常。"
+      },
+      {
+        id:"journal_seed_2",
+        date:"2026-04-24",
+        title:"Ballet-core 不是风格，是节奏感",
+        mood:"稳态",
+        tags:["学习法","discipline","ballet-core"],
+        excerpt:"最好的执行感，不是把一天塞满，而是知道什么时候发力，什么时候收束。",
+        content:"最近越来越觉得，真正适合长期主义的节奏，像芭蕾训练。重复、修正、打磨、回到最基础的动作，再继续往前。做题、写代码、学 FRM、看书，都是同样的事：不是猛冲，而是一次次把动作做对，把理解做深。coquette 的壳子不是目的，真正有力量的是那种柔软而有控制感的节奏。"
+      },
+      {
+        id:"journal_seed_3",
+        date:"2026-04-27",
+        title:"我想要的不是狼狈地变强，而是漂亮地变强",
+        mood:"高能",
+        tags:["成长","self-concept","blog"],
+        excerpt:"野心不一定要长成紧绷的样子，它也可以是奶油色、玫瑰色、很安静，但非常坚定。",
+        content:"我想把自己的长期成长做成一种会留下痕迹的东西：有计划，有复盘，有日志，有阶段感，也有审美。以后回头看，不会只看到完成了多少任务，还会看到自己是怎么一点点形成风格、形成表达、形成力量的。这个页面像一个公开给未来自己的博客封面，而我每天都在往里面写新的章节。"
+      }
+    ];
+
+    function uid(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
+    function isoToday(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+    function escapeHTML(text){return String(text||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
+    function loadState(){
+      const raw = localStorage.getItem(APP_KEY);
+      if(!raw) return {journalPosts:[...DEFAULT_POSTS], reviews:[], readingLogs:[]};
+      try{
+        const parsed = JSON.parse(raw);
+        return {
+          ...parsed,
+          journalPosts: parsed.journalPosts || [...DEFAULT_POSTS],
+          reviews: parsed.reviews || [],
+          readingLogs: parsed.readingLogs || []
+        };
+      }catch(err){
+        console.error(err);
+        return {journalPosts:[...DEFAULT_POSTS], reviews:[], readingLogs:[]};
+      }
+    }
+    let state = loadState();
+    let editingId = "";
+
+    function saveState(){localStorage.setItem(APP_KEY, JSON.stringify(state)); renderAll();}
+    function normalizeTags(text){return String(text||"").split(/[,，]/).map(s=>s.trim()).filter(Boolean)}
+    function allTags(){return [...new Set((state.journalPosts||[]).flatMap(p=>Array.isArray(p.tags)?p.tags:[]))].sort((a,b)=>a.localeCompare(b))}
+    function fillTagFilter(){
+      const select = document.getElementById('tagFilter');
+      const current = select.value;
+      select.innerHTML = '<option value="">全部标签</option>' + allTags().map(tag=>`<option value="${escapeHTML(tag)}">${escapeHTML(tag)}</option>`).join('');
+      select.value = allTags().includes(current) ? current : "";
+    }
+    function filteredPosts(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const tag = document.getElementById('tagFilter').value;
+      return [...(state.journalPosts||[])].sort((a,b)=>String(b.date).localeCompare(String(a.date))).filter(post=>{
+        const hay = [post.title, post.excerpt, post.content, ...(post.tags||[])].join(' ').toLowerCase();
+        if(q && !hay.includes(q)) return false;
+        if(tag && !(post.tags||[]).includes(tag)) return false;
+        return true;
+      });
+    }
+    function renderPosts(){
+      const list = document.getElementById('postList');
+      const posts = filteredPosts();
+      if(!posts.length){list.innerHTML = '<div class="empty">还没有匹配的日志。可以从左侧开始写第一篇。</div>'; return;}
+      list.innerHTML = posts.map(post=>`
+        <article class="post-card">
+          <h3>${escapeHTML(post.title)}</h3>
+          <div class="post-meta">
+            <span class="tag">${escapeHTML(post.mood || '稳态')}</span>
+            <span class="small">${escapeHTML(post.date || '')}</span>
+            ${(post.tags||[]).map(tag=>`<span class="tag"># ${escapeHTML(tag)}</span>`).join('')}
+          </div>
+          <p class="excerpt">${escapeHTML(post.excerpt || '')}</p>
+          <div class="content">${escapeHTML(post.content || '')}</div>
+          <div class="control-row">
+            <button class="secondary" type="button" onclick="editPost('${post.id}')">编辑</button>
+            <button class="secondary" type="button" onclick="deletePost('${post.id}')">删除</button>
+          </div>
+        </article>
+      `).join('');
+    }
+    function renderSnippets(){
+      const target = document.getElementById('dashboardSnippets');
+      const reviews = [...(state.reviews||[])].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,2);
+      const logs = [...(state.readingLogs||[])].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,2);
+      const parts = [];
+      reviews.forEach(item=>parts.push(`<div class="mini-item"><strong>复盘 · ${escapeHTML(item.date || '')}</strong><div class="small">${escapeHTML(item.wins || item.tomorrow || '最近没有填写太多内容。')}</div></div>`));
+      logs.forEach(item=>parts.push(`<div class="mini-item"><strong>读书心得 · ${escapeHTML(item.date || '')}</strong><div class="small">${escapeHTML(item.insight || '最近没有填写太多内容。')}</div></div>`));
+      target.innerHTML = parts.length ? parts.join('') : '<div class="empty">主控台里暂时还没有可同步的复盘或读书记录。</div>';
+    }
+    function resetForm(){
+      editingId = "";
+      document.getElementById('postForm').reset();
+      document.getElementById('postId').value = "";
+      document.getElementById('postDate').value = isoToday();
+      document.getElementById('postMood').value = '稳态';
+    }
+    function editPost(id){
+      const post = (state.journalPosts||[]).find(p=>p.id===id);
+      if(!post) return;
+      editingId = id;
+      document.getElementById('postId').value = id;
+      document.getElementById('postDate').value = post.date || isoToday();
+      document.getElementById('postMood').value = post.mood || '稳态';
+      document.getElementById('postTitle').value = post.title || '';
+      document.getElementById('postTags').value = (post.tags||[]).join(', ');
+      document.getElementById('postExcerpt').value = post.excerpt || '';
+      document.getElementById('postContent').value = post.content || '';
+      location.hash = '#editorSection';
+    }
+    window.editPost = editPost;
+    function deletePost(id){
+      if(!confirm('确定删除这篇日志吗？')) return;
+      state.journalPosts = (state.journalPosts||[]).filter(p=>p.id!==id);
+      saveState();
+    }
+    window.deletePost = deletePost;
+    function renderAll(){fillTagFilter(); renderPosts(); renderSnippets();}
+
+    document.getElementById('postForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const payload = {
+        id: editingId || uid(),
+        date: document.getElementById('postDate').value || isoToday(),
+        title: document.getElementById('postTitle').value.trim(),
+        mood: document.getElementById('postMood').value,
+        tags: normalizeTags(document.getElementById('postTags').value),
+        excerpt: document.getElementById('postExcerpt').value.trim(),
+        content: document.getElementById('postContent').value.trim()
+      };
+      if(!payload.title || !payload.content){alert('标题和正文都要有内容。'); return;}
+      if(editingId){
+        state.journalPosts = (state.journalPosts||[]).map(p=>p.id===editingId ? payload : p);
+      }else{
+        state.journalPosts = [payload, ...(state.journalPosts||[])];
+      }
+      resetForm();
+      saveState();
+    });
+    document.getElementById('cancelEditBtn').addEventListener('click', resetForm);
+    document.getElementById('searchInput').addEventListener('input', renderPosts);
+    document.getElementById('tagFilter').addEventListener('change', renderPosts);
+    document.getElementById('postDate').value = isoToday();
+    renderAll();
+  </script>
+</body>
+</html>

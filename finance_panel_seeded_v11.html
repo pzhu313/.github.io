@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Salon · Ivory Maison Atelier</title>
+  <style>
+    :root{--bg:#fff8fb;--panel:#fffdfd;--panel-2:#fff1f6;--line:#f4c8da;--text:#53323f;--muted:#8e6775;--accent:#e98db2;--accent-2:#d86d99;--gold:#d7b17a;--green:#8bbd9a;--shadow:0 10px 30px rgba(206,129,160,.12);--shadow-soft:0 6px 20px rgba(206,129,160,.08)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 30%),radial-gradient(circle at top right, rgba(255,255,255,.76), transparent 24%),linear-gradient(180deg,#fffafc 0%,#fff4f8 44%,#fff0f6 100%);min-height:100vh}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle at 18px 18px, rgba(233,141,178,.08) 2px, transparent 2px),radial-gradient(circle at 62px 62px, rgba(233,141,178,.05) 1px, transparent 1px);background-size:84px 84px;opacity:.72}
+    .shell{position:relative;z-index:1;max-width:1380px;margin:0 auto;padding:24px 18px 60px}.hero,.card{background:rgba(255,255,255,.9);border:1.2px solid rgba(233,141,178,.25);border-radius:30px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}.hero{padding:28px 24px 24px;margin-bottom:18px;background:linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,240,246,.96))}.hero::before,.card::before{content:"";position:absolute;inset:0 auto auto 0;height:6px;width:100%;background:linear-gradient(90deg, rgba(233,141,178,.05), rgba(233,141,178,.2), rgba(233,141,178,.05))}
+    .ribbon{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-soft);color:var(--accent-2);font-size:13px;letter-spacing:.4px;margin-bottom:14px} h1,h2,h3{margin:0 0 10px} h1{font-size:clamp(28px,4vw,42px);line-height:1.14}
+    p{line-height:1.8}.subtle,.small{color:var(--muted)}.small{font-size:12px;line-height:1.7}
+    .control-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    a.button,button{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:10px 14px;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 20px rgba(216,109,153,.18);text-decoration:none;transition:.2s ease}
+    a.button.secondary,button.secondary{color:var(--accent-2);background:#fff;border:1px solid rgba(233,141,178,.36);box-shadow:none} a.button:hover,button:hover{transform:translateY(-1px)}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{padding:14px;border-radius:22px;background:#fff;border:1px solid rgba(233,141,178,.18)}.stat .v{font-size:24px;font-weight:700;color:var(--accent-2);margin-top:6px}
+    .layout{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:18px}.sidebar{display:flex;flex-direction:column;gap:16px}.card{padding:18px}
+    label{display:block;font-size:13px;font-weight:700;color:var(--accent-2);margin-bottom:6px} input,textarea,select{width:100%;padding:12px 13px;border-radius:16px;border:1px solid rgba(233,141,178,.3);background:rgba(255,255,255,.95);color:var(--text);font-size:14px;outline:none;transition:.2s ease;font-family:inherit} input:focus,textarea:focus,select:focus{border-color:rgba(216,109,153,.55);box-shadow:0 0 0 4px rgba(233,141,178,.12)} textarea{min-height:100px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.list{display:grid;gap:12px}.item{background:#fff;border:1px solid rgba(233,141,178,.2);border-radius:24px;padding:16px;box-shadow:var(--shadow-soft)} .tag{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#fbe7ef;border:1px solid rgba(233,141,178,.2);color:var(--accent-2);font-size:12px;font-weight:700}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:14px}.toolbar .field{min-width:180px;flex:1}.empty{padding:18px;border:1px dashed rgba(233,141,178,.35);border-radius:20px;color:var(--muted);text-align:center;background:rgba(255,255,255,.6)} .progress{width:100%;height:10px;border-radius:999px;background:rgba(233,141,178,.14);overflow:hidden;margin:8px 0 6px}.progress>span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),#f3a7c4)}
+    .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;line-height:1.8}
+    @media (max-width:1080px){.layout,.grid,.form-grid{grid-template-columns:1fr}} @media (max-width:640px){.shell{padding:14px 12px 40px}.hero{padding:22px 18px}}
+  </style>
+
+    <style id="v11-theme-override">
+      :root{
+        --bg:#f6f2ec !important;
+        --panel:#fffdf9 !important;
+        --panel-2:#f8f3ed !important;
+        --line:#e7ddd2 !important;
+        --line-2:#d7c8bc !important;
+        --text:#4d403b !important;
+        --muted:#7b7069 !important;
+        --rose:#efe5dc !important;
+        --rose-2:#f4ece5 !important;
+        --rose-3:#fbf7f2 !important;
+        --accent:#ba968f !important;
+        --accent-2:#98756f !important;
+        --accent-3:#856760 !important;
+        --gold:#c6af8e !important;
+        --green:#98a89a !important;
+        --ink:#413633 !important;
+        --shadow:0 18px 45px rgba(103,85,78,.10) !important;
+        --shadow-soft:0 10px 28px rgba(103,85,78,.06) !important;
+      }
+      body{
+        background:
+          radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 28%),
+          radial-gradient(circle at top right, rgba(255,255,255,.76), transparent 24%),
+          linear-gradient(180deg,#f8f4ef 0%,#f5efe8 54%,#f3ece6 100%) !important;
+      }
+      body::before{
+        background-image:
+          radial-gradient(circle at 18px 18px, rgba(159,132,123,.07) 2px, transparent 2px),
+          radial-gradient(circle at 58px 58px, rgba(159,132,123,.035) 1px, transparent 1px) !important;
+      }
+      h1,h2,h3,.hero h1,.section-head h2,.card h2,.card h3,.note-title,.post-title{
+        font-family: Georgia, "Times New Roman", "Songti SC", serif !important;
+        letter-spacing:.02em;
+      }
+      .hero{
+        background:
+          linear-gradient(135deg, rgba(255,255,255,.96), rgba(248,242,235,.95)),
+          linear-gradient(135deg, rgba(233,224,214,.24), rgba(255,255,255,0)) !important;
+        border-color: rgba(151,120,112,.18) !important;
+      }
+      .hero::before,.hero::after{
+        background:radial-gradient(circle, rgba(218,203,192,.56), rgba(218,203,192,0)) !important;
+      }
+      .ribbon,.tag,.pill,.phase-tag,.stat,.nav-wrap,.button.secondary,button.secondary{
+        border-color: rgba(151,120,112,.18) !important;
+      }
+      .ribbon,.tag,.pill,.phase-tag,.nav-link,.button.secondary,button.secondary{color:var(--accent-2) !important}
+      .button,button{
+        background:linear-gradient(135deg,#ab8780,#8f6d67) !important;
+        box-shadow:0 10px 24px rgba(120,95,88,.14) !important;
+      }
+      .button.ghost,button.ghost{background:#f6efe8 !important;color:var(--muted) !important}
+      .nav-wrap,.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card{
+        backdrop-filter: blur(10px);
+      }
+      .nav-wrap{
+        background:rgba(255,252,248,.78) !important;
+      }
+      .nav-link{
+        background:rgba(241,234,226,.8) !important;
+        border:1px solid rgba(151,120,112,.14) !important;
+      }
+      .nav-link:hover{background:#fffdf9 !important}
+      .card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card{border-color: rgba(151,120,112,.14) !important}
+      .card::before,.hero .ribbon::after{opacity:.75}
+      .mood-photo::after{background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,252,248,.82)) !important}
+      .hero p,.section-head p,.subtle,.small,.mood-caption,.footer{color:var(--muted) !important}
+      .luxe-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:16px}
+      .luxe-link-card{display:block;text-decoration:none;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(248,242,235,.88));border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft);color:inherit;transition:.22s ease}
+      .luxe-link-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+      .luxe-link-card strong{display:block;color:var(--ink);font-size:16px;margin-bottom:8px;font-family:Georgia,"Times New Roman","Songti SC",serif}
+      .luxe-link-card span{display:block;color:var(--muted);font-size:13px;line-height:1.8}
+      .collection-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+      .collection-card{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(249,244,238,.92));border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft)}
+      .collection-card h3{margin:0 0 8px;color:var(--ink)}
+      .collection-card p{margin:0;color:var(--muted);line-height:1.8;font-size:14px}
+      .editorial-soft{position:relative;overflow:hidden}
+      .editorial-soft::after{content:"";position:absolute;inset:auto -20% -40% auto;width:180px;height:180px;border-radius:999px;background:radial-gradient(circle, rgba(207,190,178,.28), rgba(207,190,178,0));pointer-events:none}
+      @media (max-width:900px){.luxe-links,.collection-grid{grid-template-columns:1fr}}
+    </style>
+
+
+<style id="global-contrast-fix-v14">
+:root{
+  --bg:#fbf8fb !important;
+  --panel:#fffdfd !important;
+  --panel-2:#fff7fa !important;
+  --line:#ead7e1 !important;
+  --line-2:#d8b9c8 !important;
+  --text:#35262d !important;
+  --muted:#6a5962 !important;
+  --rose:#f7ebf1 !important;
+  --rose-2:#fdf4f8 !important;
+  --rose-3:#fffafd !important;
+  --accent:#8f5a72 !important;
+  --accent-2:#6e3f52 !important;
+  --accent-3:#563242 !important;
+  --gold:#caa2b6 !important;
+  --green:#8aa395 !important;
+  --ink:#281b21 !important;
+  --shadow:0 18px 40px rgba(88,52,68,.10) !important;
+  --shadow-soft:0 8px 24px rgba(88,52,68,.07) !important;
+}
+html,body{color:var(--text) !important;}
+body{
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 30%),
+    radial-gradient(circle at top right, rgba(255,255,255,.72), transparent 26%),
+    linear-gradient(180deg,#fffbfd 0%,#fbf5f8 48%,#f8f0f4 100%) !important;
+}
+body::before{
+  background-image:
+    radial-gradient(circle at 18px 18px, rgba(143,90,114,.06) 2px, transparent 2px),
+    radial-gradient(circle at 58px 58px, rgba(143,90,114,.03) 1px, transparent 1px) !important;
+}
+h1,h2,h3,h4,h5,h6,strong,.hero h1,.section-head h2,.card h2,.card h3,.post-title,.note-title{
+  color:var(--ink) !important;
+}
+p,.subtle,.small,.muted,.hero p,.section-head p,.footer,.mood-caption,.tiny,.excerpt,.content,.day-title,.callout,.stat small,.routine-item,.task-line,.task-row,.goal-card,.book-card,.journal-card,.mini-item,.empty{
+  color:var(--text) !important;
+}
+.small,.muted,.subtle,.hero p,.section-head p,.footer,.mood-caption,.tiny,.stat small,.day-title,.callout,.empty{
+  color:var(--muted) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.phase,.collection-card,.luxe-link-card,.hero,.nav-wrap,.sidebar .card{
+  border-color:rgba(111,63,82,.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.collection-card,.luxe-link-card{
+  background:rgba(255,255,255,.92) !important;
+}
+.button,button,input[type="submit"],input[type="button"],.action-btn,.primary-btn,.cta,.hero .button{
+  background:linear-gradient(135deg,#8f5a72,#6e3f52) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(110,63,82,.18) !important;
+  box-shadow:0 10px 24px rgba(110,63,82,.18) !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.button:hover,button:hover,input[type="submit"]:hover,input[type="button"]:hover,.action-btn:hover,.primary-btn:hover,.cta:hover{
+  filter:brightness(1.03) !important;
+}
+.button.secondary,button.secondary,.button.ghost,button.ghost,
+.nav-link,.tag,.pill,.phase-tag,.ribbon,.chip,.status-pill,.toolbar .chip,.badge,
+.control-row a.button.secondary,.control-row button.secondary,.control-row a.button.ghost,.control-row button.ghost{
+  background:#fff7fb !important;
+  color:#5c3244 !important;
+  border:1px solid rgba(111,63,82,.22) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.nav-link:hover,.button.secondary:hover,button.secondary:hover,.button.ghost:hover,button.ghost:hover{
+  background:#fffdfd !important;
+  color:#4f2b3a !important;
+}
+a,.link,summary,.tab,.menu-link{color:#6e3f52 !important;}
+a:hover,.link:hover,summary:hover,.tab:hover,.menu-link:hover{color:#4f2b3a !important;}
+label,legend{color:#6e3f52 !important;}
+input,textarea,select{
+  background:#fffdfd !important;
+  color:var(--text) !important;
+  border:1px solid rgba(111,63,82,.20) !important;
+}
+input::placeholder,textarea::placeholder{color:#8c7781 !important;}
+input:focus,textarea:focus,select:focus{
+  border-color:#8f5a72 !important;
+  box-shadow:0 0 0 4px rgba(143,90,114,.12) !important;
+}
+.task-line,.pill,.tag,.phase-tag,.ribbon,.stat,.mini-card,.callout,.day-cell.free{
+  background:#fff8fb !important;
+}
+progress,.progress{background:#f3e7ee !important;}
+.progress > span,.bar,.progress-fill{background:linear-gradient(90deg,#a76b86,#7a455c) !important;}
+hr,.divider{border-color:rgba(111,63,82,.12) !important;}
+::selection{background:#edd8e3;color:#2b1d23;}
+</style>
+
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="ribbon">💸 finance salon · budget, accounts, cashflow</div>
+      <h1>财务管理页 · 单独放你的账户、预算、现金流和阶段目标</h1>
+      <p>这页不碰你主控台的任务结构，只单独负责现实层面的财务盘点。你可以把学习投入、生活支出、账户余额、储蓄目标、留学 / 跳槽准备金都收进一个更清晰的面板里。</p>
+      <div class="control-row">
+        <a class="button" href="index_calendar_seeded_v11.html">返回主控台</a>
+        <a class="button secondary" href="journal_seeded_v11.html">日志页</a>
+        <a class="button secondary" href="workflow_notes_seeded_v11.html">工作流笔记页</a>
+        <a class="button secondary" href="study_notes_seeded_v11.html">学习笔记页</a>
+        <a class="button secondary" href="#transactionForm">记一笔</a>
+      </div>
+      <div class="control-row"><a class="button secondary" href="index_calendar_seeded_v11.html">主控台</a><a class="button secondary" href="journal_seeded_v11.html">日志页</a><a class="button secondary" href="workflow_notes_seeded_v11.html">工作流</a><a class="button secondary" href="study_notes_seeded_v11.html">学习笔记</a><a class="button secondary" href="reading_lounge_seeded_v11.html">读书札记</a><a class="button secondary" href="travel_atelier_seeded_v11.html">旅行页</a><a class="button secondary" href="photo_wall_seeded_v11.html">照片墙</a><a class="button secondary" href="fitness_checkin_seeded_v11.html">健身打卡</a><a class="button secondary" href="manifestation_journal_seeded_v11.html">显化日记</a><a class="button secondary" href="divination_journal_seeded_v11.html">占卜日记</a></div>
+
+    </section>
+
+    <div class="grid" id="statsGrid"></div>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="card">
+          <h2>账户</h2>
+          <form id="accountForm">
+            <input type="hidden" id="accountId" />
+            <div class="form-grid">
+              <div><label for="accountName">账户名</label><input id="accountName" required placeholder="例如：招商银行卡 / 支付宝" /></div>
+              <div><label for="accountType">类型</label><select id="accountType"><option value="现金">现金</option><option value="储蓄">储蓄</option><option value="投资">投资</option><option value="信用">信用</option></select></div>
+              <div><label for="accountBalance">当前余额</label><input id="accountBalance" type="number" step="0.01" placeholder="0" /></div>
+              <div><label for="accountNote">备注</label><input id="accountNote" placeholder="例如：日常消费主卡" /></div>
+            </div>
+            <div class="control-row"><button type="submit">保存账户</button><button class="secondary" type="button" id="accountCancelBtn">取消</button></div>
+          </form>
+          <div class="list" id="accountList" style="margin-top:14px;"></div>
+        </section>
+
+        <section class="card" id="transactionForm">
+          <h2>记账 / 预算 / 财务目标</h2>
+          <form id="txnForm">
+            <input type="hidden" id="txnId" />
+            <div class="form-grid">
+              <div><label for="txnDate">日期</label><input id="txnDate" type="date" /></div>
+              <div><label for="txnType">类型</label><select id="txnType"><option value="支出">支出</option><option value="收入">收入</option><option value="转移">转移</option></select></div>
+              <div><label for="txnCategory">分类</label><select id="txnCategory"><option value="房租">房租</option><option value="饮食">饮食</option><option value="学习投入">学习投入</option><option value="健身与审美">健身与审美</option><option value="通勤">通勤</option><option value="社交">社交</option><option value="工资">工资</option><option value="奖金">奖金</option><option value="其他">其他</option></select></div>
+              <div><label for="txnAmount">金额</label><input id="txnAmount" type="number" step="0.01" placeholder="0" /></div>
+              <div><label for="txnMonth">归属月份</label><input id="txnMonth" type="month" /></div>
+              <div><label for="txnAccount">账户</label><select id="txnAccount"></select></div>
+            </div>
+            <div style="margin-top:12px;"><label for="txnNote">备注</label><textarea id="txnNote" placeholder="例如：FRM 报名费 / 买书 / 房租 / 工资到账"></textarea></div>
+            <div class="control-row"><button type="submit">保存记录</button><button class="secondary" type="button" id="txnCancelBtn">取消</button></div>
+          </form>
+          <hr style="border:none;border-top:1px dashed rgba(233,141,178,.22);margin:16px 0;"/>
+          <form id="budgetForm">
+            <input type="hidden" id="budgetId" />
+            <div class="form-grid">
+              <div><label for="budgetMonth">预算月份</label><input id="budgetMonth" type="month" /></div>
+              <div><label for="budgetCategory">预算分类</label><select id="budgetCategory"><option value="房租">房租</option><option value="饮食">饮食</option><option value="学习投入">学习投入</option><option value="健身与审美">健身与审美</option><option value="通勤">通勤</option><option value="社交">社交</option><option value="其他">其他</option></select></div>
+              <div><label for="budgetAmount">预算金额</label><input id="budgetAmount" type="number" step="0.01" placeholder="0" /></div>
+              <div><label for="budgetNote">备注</label><input id="budgetNote" placeholder="例如：本月课程 / 报名费" /></div>
+            </div>
+            <div class="control-row"><button type="submit">保存预算</button><button class="secondary" type="button" id="budgetCancelBtn">取消</button></div>
+          </form>
+          <hr style="border:none;border-top:1px dashed rgba(233,141,178,.22);margin:16px 0;"/>
+          <form id="goalForm">
+            <input type="hidden" id="goalId" />
+            <div class="form-grid">
+              <div><label for="goalTitle">财务目标</label><input id="goalTitle" placeholder="例如：留学申请准备金" /></div>
+              <div><label for="goalTarget">目标金额</label><input id="goalTarget" type="number" step="0.01" placeholder="0" /></div>
+              <div><label for="goalSaved">当前进度</label><input id="goalSaved" type="number" step="0.01" placeholder="0" /></div>
+              <div><label for="goalDeadline">截止月份</label><input id="goalDeadline" type="month" /></div>
+            </div>
+            <div class="control-row"><button type="submit">保存目标</button><button class="secondary" type="button" id="goalCancelBtn">取消</button></div>
+          </form>
+        </section>
+      </aside>
+
+      <main>
+        <section class="card">
+          <div class="toolbar">
+            <div class="field"><label for="viewMonth">看哪个月</label><input id="viewMonth" type="month" /></div>
+            <div class="field"><label for="typeFilter">筛选类型</label><select id="typeFilter"><option value="">全部</option><option value="收入">收入</option><option value="支出">支出</option><option value="转移">转移</option></select></div>
+          </div>
+          <h2>预算进度</h2>
+          <div class="list" id="budgetList"></div>
+        </section>
+        <section class="card" style="margin-top:18px;">
+          <h2>财务目标</h2>
+          <div class="list" id="goalList"></div>
+        </section>
+        <section class="card" style="margin-top:18px;">
+          <h2>收支流水</h2>
+          <div class="list" id="txnList"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">finance salon · 和主控台共用浏览器本地数据 · 建议按月维护预算与现金流</div>
+  </div>
+
+  <script>
+    const APP_KEY = "rosePinkQuantDashboard_v4_seeded_2026_04_08_frm";
+    function uid(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
+    function isoToday(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+    function monthToday(){return isoToday().slice(0,7)}
+    function escapeHtml(str=''){return str.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+    function defaultFinance(){return {accounts:[],transactions:[],budgets:[],goals:[]}}
+    function loadState(){try{const raw=localStorage.getItem(APP_KEY);const parsed=raw?JSON.parse(raw):{};return {...parsed, financePanel:{...defaultFinance(), ...(parsed.financePanel||{})}}}catch(e){return {financePanel:defaultFinance()}}}
+    let state=loadState();
+    function saveState(){localStorage.setItem(APP_KEY, JSON.stringify(state)); renderAll()}
+    function fmtMoney(v){const n=Number(v||0);return Number.isFinite(n)?n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}):'0.00'}
+    function currentMonthData(month){const tx=(state.financePanel.transactions||[]).filter(t=>(t.month||'')===month);return {income:tx.filter(t=>t.type==='收入').reduce((s,t)=>s+Number(t.amount||0),0),expense:tx.filter(t=>t.type==='支出').reduce((s,t)=>s+Number(t.amount||0),0),count:tx.length}}
+    function renderAccountOptions(){const opts='<option value="">不指定</option>'+(state.financePanel.accounts||[]).map(a=>`<option value="${a.id}">${escapeHtml(a.name)}</option>`).join('');document.getElementById('txnAccount').innerHTML=opts}
+    function renderStats(){const month=viewMonth.value||monthToday();const {income,expense,count}=currentMonthData(month);const balance=(state.financePanel.accounts||[]).reduce((s,a)=>s+Number(a.balance||0),0);const savings=income?Math.max(0,(income-expense)/income*100):0;const goals=(state.financePanel.goals||[]).length;const stats=[['账户总余额',fmtMoney(balance)],['本月收入',fmtMoney(income)],['本月支出',fmtMoney(expense)],['本月结余率',`${savings.toFixed(1)}%`]];document.getElementById('statsGrid').innerHTML=stats.map(([k,v])=>`<div class="stat"><div class="small">${k}</div><div class="v">${v}</div></div>`).join('')}
+    function renderAccounts(){const wrap=document.getElementById('accountList');const arr=state.financePanel.accounts||[];if(!arr.length){wrap.innerHTML='<div class="empty">还没有账户。可以先加银行卡、支付宝、储蓄或投资账户。</div>';return}wrap.innerHTML=arr.map(a=>`<div class="item"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start;"><div><div class="tag">${escapeHtml(a.type||'账户')}</div><div style="margin-top:8px;font-weight:700;">${escapeHtml(a.name)}</div><div class="small">${escapeHtml(a.note||'')}</div></div><div style="font-weight:700;color:var(--accent-2);">¥ ${fmtMoney(a.balance)}</div></div><div class="control-row"><button class="secondary" type="button" onclick="editAccount('${a.id}')">编辑</button><button class="secondary" type="button" onclick="deleteAccount('${a.id}')">删除</button></div></div>`).join('')}
+    function renderBudgets(){const month=viewMonth.value||monthToday();const tx=(state.financePanel.transactions||[]).filter(t=>t.month===month&&t.type==='支出');const wrap=document.getElementById('budgetList');const budgets=(state.financePanel.budgets||[]).filter(b=>b.month===month);if(!budgets.length){wrap.innerHTML='<div class="empty">这个月还没有预算。可以先给房租、饮食、学习投入设预算。</div>';return}wrap.innerHTML=budgets.map(b=>{const spent=tx.filter(t=>t.category===b.category).reduce((s,t)=>s+Number(t.amount||0),0);const pct=b.amount?Math.min(100,spent/Number(b.amount)*100):0;return `<div class="item"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><div><div class="tag">${escapeHtml(b.category)}</div><div style="margin-top:8px;font-weight:700;">${month} · 预算 ¥ ${fmtMoney(b.amount)}</div><div class="small">${escapeHtml(b.note||'')}</div></div><div class="small">已花 ¥ ${fmtMoney(spent)}</div></div><div class="progress"><span style="width:${pct}%;"></span></div><div class="small">使用 ${pct.toFixed(1)}%</div><div class="control-row"><button class="secondary" type="button" onclick="editBudget('${b.id}')">编辑</button><button class="secondary" type="button" onclick="deleteBudget('${b.id}')">删除</button></div></div>`}).join('')}
+    function renderGoals(){const wrap=document.getElementById('goalList');const arr=state.financePanel.goals||[];if(!arr.length){wrap.innerHTML='<div class="empty">还没有财务目标。可以设应急金、留学基金、跳槽缓冲金等。</div>';return}wrap.innerHTML=arr.map(g=>{const pct=g.target?Math.min(100,Number(g.saved||0)/Number(g.target)*100):0;return `<div class="item"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><div><div class="tag">${escapeHtml(g.deadline||'未设截止')}</div><div style="margin-top:8px;font-weight:700;">${escapeHtml(g.title)}</div></div><div class="small">¥ ${fmtMoney(g.saved)} / ¥ ${fmtMoney(g.target)}</div></div><div class="progress"><span style="width:${pct}%;"></span></div><div class="small">完成 ${pct.toFixed(1)}%</div><div class="control-row"><button class="secondary" type="button" onclick="editGoal('${g.id}')">编辑</button><button class="secondary" type="button" onclick="deleteGoal('${g.id}')">删除</button></div></div>`}).join('')}
+    function renderTxns(){const month=viewMonth.value||monthToday();const filter=typeFilter.value;const wrap=document.getElementById('txnList');const arr=(state.financePanel.transactions||[]).filter(t=>(!month||t.month===month)&&(!filter||t.type===filter)).sort((a,b)=>(b.date||'').localeCompare(a.date||''));if(!arr.length){wrap.innerHTML='<div class="empty">这个筛选下还没有记录。</div>';return}wrap.innerHTML=arr.map(t=>{const acc=(state.financePanel.accounts||[]).find(a=>a.id===t.accountId);return `<div class="item"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start;"><div><div class="tag">${escapeHtml(t.type)}</div> <span class="tag">${escapeHtml(t.category)}</span><div style="margin-top:8px;font-weight:700;">${escapeHtml(t.date||'')}</div><div class="small">${escapeHtml(acc?acc.name:'未指定账户')} · ${escapeHtml(t.note||'')}</div></div><div style="font-weight:700;color:${t.type==='收入'?'var(--green)':'var(--accent-2)'};">${t.type==='收入'?'+':'-'} ¥ ${fmtMoney(t.amount)}</div></div><div class="control-row"><button class="secondary" type="button" onclick="editTxn('${t.id}')">编辑</button><button class="secondary" type="button" onclick="deleteTxn('${t.id}')">删除</button></div></div>`}).join('')}
+    function renderAll(){renderAccountOptions();renderAccounts();renderStats();renderBudgets();renderGoals();renderTxns()}
+    function resetAccountForm(){accountForm.reset();accountId.value='';accountType.value='现金';}
+    function resetTxnForm(){txnForm.reset();txnId.value='';txnDate.value=isoToday();txnMonth.value=monthToday();txnType.value='支出';}
+    function resetBudgetForm(){budgetForm.reset();budgetId.value='';budgetMonth.value=viewMonth.value||monthToday();}
+    function resetGoalForm(){goalForm.reset();goalId.value='';}
+    window.editAccount=function(id){const a=(state.financePanel.accounts||[]).find(x=>x.id===id);if(!a)return;accountId.value=a.id;accountName.value=a.name||'';accountType.value=a.type||'现金';accountBalance.value=a.balance||'';accountNote.value=a.note||'';window.scrollTo({top:0,behavior:'smooth'})}
+    window.deleteAccount=function(id){if(!confirm('删除这个账户？')) return;state.financePanel.accounts=(state.financePanel.accounts||[]).filter(x=>x.id!==id);saveState()}
+    window.editTxn=function(id){const t=(state.financePanel.transactions||[]).find(x=>x.id===id);if(!t)return;txnId.value=t.id;txnDate.value=t.date||isoToday();txnType.value=t.type||'支出';txnCategory.value=t.category||'其他';txnAmount.value=t.amount||'';txnMonth.value=t.month||monthToday();txnAccount.value=t.accountId||'';txnNote.value=t.note||'';window.scrollTo({top:document.getElementById('transactionForm').offsetTop-20,behavior:'smooth'})}
+    window.deleteTxn=function(id){if(!confirm('删除这条收支记录？')) return;state.financePanel.transactions=(state.financePanel.transactions||[]).filter(x=>x.id!==id);saveState()}
+    window.editBudget=function(id){const b=(state.financePanel.budgets||[]).find(x=>x.id===id);if(!b)return;budgetId.value=b.id;budgetMonth.value=b.month||monthToday();budgetCategory.value=b.category||'其他';budgetAmount.value=b.amount||'';budgetNote.value=b.note||'';window.scrollTo({top:document.getElementById('transactionForm').offsetTop-20,behavior:'smooth'})}
+    window.deleteBudget=function(id){if(!confirm('删除这条预算？')) return;state.financePanel.budgets=(state.financePanel.budgets||[]).filter(x=>x.id!==id);saveState()}
+    window.editGoal=function(id){const g=(state.financePanel.goals||[]).find(x=>x.id===id);if(!g)return;goalId.value=g.id;goalTitle.value=g.title||'';goalTarget.value=g.target||'';goalSaved.value=g.saved||'';goalDeadline.value=g.deadline||'';window.scrollTo({top:document.getElementById('transactionForm').offsetTop-20,behavior:'smooth'})}
+    window.deleteGoal=function(id){if(!confirm('删除这个财务目标？')) return;state.financePanel.goals=(state.financePanel.goals||[]).filter(x=>x.id!==id);saveState()}
+    accountForm.addEventListener('submit',e=>{e.preventDefault();const payload={id:accountId.value||uid(),name:accountName.value.trim(),type:accountType.value,balance:Number(accountBalance.value||0),note:accountNote.value.trim()};if(accountId.value){state.financePanel.accounts=(state.financePanel.accounts||[]).map(x=>x.id===payload.id?payload:x)}else{state.financePanel.accounts=[payload,...(state.financePanel.accounts||[])]}saveState();resetAccountForm()})
+    txnForm.addEventListener('submit',e=>{e.preventDefault();const payload={id:txnId.value||uid(),date:txnDate.value||isoToday(),type:txnType.value,category:txnCategory.value,amount:Number(txnAmount.value||0),month:txnMonth.value||monthToday(),accountId:txnAccount.value,note:txnNote.value.trim()};if(txnId.value){state.financePanel.transactions=(state.financePanel.transactions||[]).map(x=>x.id===payload.id?payload:x)}else{state.financePanel.transactions=[payload,...(state.financePanel.transactions||[])]}saveState();resetTxnForm()})
+    budgetForm.addEventListener('submit',e=>{e.preventDefault();const payload={id:budgetId.value||uid(),month:budgetMonth.value||monthToday(),category:budgetCategory.value,amount:Number(budgetAmount.value||0),note:budgetNote.value.trim()};if(budgetId.value){state.financePanel.budgets=(state.financePanel.budgets||[]).map(x=>x.id===payload.id?payload:x)}else{state.financePanel.budgets=[payload,...(state.financePanel.budgets||[])]}saveState();resetBudgetForm()})
+    goalForm.addEventListener('submit',e=>{e.preventDefault();const payload={id:goalId.value||uid(),title:goalTitle.value.trim(),target:Number(goalTarget.value||0),saved:Number(goalSaved.value||0),deadline:goalDeadline.value||''};if(goalId.value){state.financePanel.goals=(state.financePanel.goals||[]).map(x=>x.id===payload.id?payload:x)}else{state.financePanel.goals=[payload,...(state.financePanel.goals||[])]}saveState();resetGoalForm()})
+    document.getElementById('accountCancelBtn').addEventListener('click',resetAccountForm);document.getElementById('txnCancelBtn').addEventListener('click',resetTxnForm);document.getElementById('budgetCancelBtn').addEventListener('click',resetBudgetForm);document.getElementById('goalCancelBtn').addEventListener('click',resetGoalForm);
+    document.getElementById('viewMonth').addEventListener('change',renderAll);document.getElementById('typeFilter').addEventListener('change',renderTxns);
+    viewMonth.value=monthToday();resetAccountForm();resetTxnForm();resetBudgetForm();resetGoalForm();renderAll();
+  </script>
+</body>
+</html>

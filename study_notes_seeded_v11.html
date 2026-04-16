@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Atelier · Ivory Maison Atelier</title>
+  <style>
+    :root{
+      --bg:#fff8fb;
+      --panel:#fffdfd;
+      --panel-2:#fff2f7;
+      --line:#f4c8da;
+      --line-2:#e9b4ca;
+      --text:#53323f;
+      --muted:#8e6775;
+      --accent:#e98db2;
+      --accent-2:#d86d99;
+      --accent-3:#c86590;
+      --gold:#d7b17a;
+      --ink:#6b4253;
+      --green:#8bbd9a;
+      --shadow:0 10px 30px rgba(206,129,160,.12);
+      --shadow-soft:0 6px 20px rgba(206,129,160,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.88), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,255,255,.74), transparent 26%),
+        linear-gradient(180deg,#fffafc 0%,#fff4f8 46%,#fff0f6 100%);
+      min-height:100vh;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle at 18px 18px, rgba(233,141,178,.08) 2px, transparent 2px),
+        radial-gradient(circle at 58px 58px, rgba(233,141,178,.05) 1px, transparent 1px);
+      background-size:80px 80px;
+      opacity:.7;
+    }
+    .shell{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:24px 18px 56px}
+    .hero{
+      position:relative;overflow:hidden;border-radius:34px;padding:30px 26px;
+      background:linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,241,246,.96));
+      border:1.5px solid rgba(233,141,178,.26);box-shadow:var(--shadow);margin-bottom:18px;
+    }
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:999px;background:radial-gradient(circle, rgba(247,198,215,.72), rgba(247,198,215,0));width:240px;height:240px;pointer-events:none}
+    .hero::before{top:-75px;right:-70px}.hero::after{left:-84px;bottom:-100px}
+    .ribbon{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.92);border:1px solid var(--line);box-shadow:var(--shadow-soft);color:var(--accent-2);font-size:12px;letter-spacing:.45px;text-transform:uppercase;margin-bottom:14px}
+    h1{margin:0 0 10px;font-size:clamp(30px,4vw,48px);line-height:1.12;color:var(--ink)}
+    .hero p{margin:0;max-width:980px;color:var(--muted);line-height:1.9;font-size:15px}
+    .control-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .button,button{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:10px 15px;font-size:14px;font-weight:700;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 20px rgba(216,109,153,.18);transition:.2s ease}
+    .button.secondary,button.secondary{color:var(--accent-2);background:#fff;border:1px solid rgba(233,141,178,.36);box-shadow:none}
+    .button.ghost,button.ghost{color:var(--muted);background:#fbe7ef;box-shadow:none}
+    .button:hover,button:hover{transform:translateY(-1px)}
+    .mood-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+    .mood-card{background:#fff;border:1px solid rgba(233,141,178,.18);border-radius:24px;padding:12px;box-shadow:var(--shadow-soft)}
+    .mood-photo{aspect-ratio:4/5;border-radius:16px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+    .mood-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,250,252,.76))}
+    .mood-photo.one{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(248,217,230,.22)), url('assets/visionboards/coquette-desk-books.svg')}
+    .mood-photo.two{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(246,220,231,.22)), url('assets/visionboards/coquette-reading-lounge.svg')}
+    .mood-photo.three{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(247,216,229,.22)), url('assets/visionboards/coquette-bows-perfume.svg')}
+    .mood-photo.four{background-image:linear-gradient(180deg, rgba(255,251,253,.18), rgba(247,216,229,.22)), url('assets/visionboards/coquette-skincare-mirror.svg')}
+    .mood-caption{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.7}
+    .layout{display:grid;grid-template-columns:420px 1fr;gap:18px;margin-top:18px}
+    .sidebar{display:flex;flex-direction:column;gap:16px}
+    .card{background:rgba(255,255,255,.9);border:1.2px solid rgba(233,141,178,.26);border-radius:28px;box-shadow:var(--shadow-soft);padding:18px;position:relative;overflow:hidden}
+    .card::before{content:"";position:absolute;inset:0 auto auto 0;height:6px;width:100%;background:linear-gradient(90deg, rgba(233,141,178,.05), rgba(233,141,178,.22), rgba(233,141,178,.05))}
+    .card h2,.card h3{margin:0 0 12px;line-height:1.24}
+    .subtle{font-size:13px;color:var(--muted);line-height:1.75}
+    label{display:block;font-size:13px;font-weight:700;color:var(--accent-2);margin-bottom:6px}
+    input,textarea,select{
+      width:100%;padding:12px 13px;border-radius:16px;border:1px solid rgba(233,141,178,.3);
+      background:rgba(255,255,255,.95);color:var(--text);font-size:14px;outline:none;transition:.2s ease;font-family:inherit
+    }
+    input:focus,textarea:focus,select:focus{border-color:rgba(216,109,153,.55);box-shadow:0 0 0 4px rgba(233,141,178,.12)}
+    textarea{min-height:140px;resize:vertical}
+    #noteContent{min-height:280px;font-family:"SFMono-Regular","Consolas","Menlo",monospace;font-size:13px;line-height:1.75}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .tag{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#fbe7ef;border:1px solid rgba(233,141,178,.2);color:var(--accent-2);font-size:12px;font-weight:700}
+    .small{font-size:12px;line-height:1.65;color:var(--muted)}
+    .empty{padding:18px;border:1px dashed rgba(233,141,178,.35);border-radius:20px;color:var(--muted);text-align:center;background:rgba(255,255,255,.6)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:14px}
+    .toolbar .field{min-width:180px;flex:1}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .editor-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+    .editor-toolbar button{padding:8px 12px;font-size:12px}
+    .preview{
+      min-height:320px;background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,248,251,.96));
+      border:1px solid rgba(233,141,178,.22);border-radius:22px;padding:18px;overflow:auto
+    }
+    .preview h1,.preview h2,.preview h3{color:var(--ink);margin:1em 0 .5em}
+    .preview p,.preview li,.preview blockquote{line-height:1.9;color:#634350}
+    .preview code{background:#fff3f8;padding:2px 6px;border-radius:8px;color:var(--accent-3)}
+    .preview pre{background:#fff5f8;border:1px solid rgba(233,141,178,.16);padding:14px;border-radius:16px;overflow:auto}
+    .preview blockquote{border-left:4px solid rgba(233,141,178,.3);padding-left:14px;margin-left:0;color:var(--muted)}
+    .preview table{width:100%;border-collapse:collapse;margin:14px 0;background:#fff}
+    .preview th,.preview td{border:1px solid rgba(233,141,178,.18);padding:8px 10px;text-align:left;font-size:13px}
+    .preview hr{border:none;border-top:1px dashed rgba(233,141,178,.3);margin:20px 0}
+    .note-list{display:grid;gap:14px}
+    .note-card{background:#fff;border:1px solid rgba(233,141,178,.2);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft)}
+    .note-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 12px}
+    .note-title{margin:0;font-size:22px;color:var(--ink)}
+    .note-excerpt{font-size:14px;line-height:1.8;color:#6f4a59;margin:0 0 10px}
+    .note-preview{
+      max-height:300px;overflow:auto;border-top:1px dashed rgba(233,141,178,.22);
+      padding-top:12px;margin-top:12px
+    }
+    .pill-list{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{padding:7px 12px;border-radius:999px;background:#fff3f8;border:1px solid rgba(233,141,178,.22);font-size:12px;color:var(--accent-2);font-weight:700}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .stat{background:#fff;border:1px solid rgba(233,141,178,.18);border-radius:22px;padding:14px;box-shadow:var(--shadow-soft)}
+    .stat .v{font-size:24px;font-weight:700;color:var(--accent-2);margin-top:8px}
+    .helper{background:#fff7fa;border:1px dashed rgba(233,141,178,.28);border-radius:18px;padding:12px;margin-top:12px}
+    .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;line-height:1.8}
+    @media (max-width:1120px){.layout,.split,.mood-strip,.stats{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
+    @media (max-width:640px){.shell{padding:14px 12px 40px}.hero{padding:22px 18px}}
+  </style>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <style id="v11-theme-override">
+      :root{
+        --bg:#f6f2ec !important;
+        --panel:#fffdf9 !important;
+        --panel-2:#f8f3ed !important;
+        --line:#e7ddd2 !important;
+        --line-2:#d7c8bc !important;
+        --text:#4d403b !important;
+        --muted:#7b7069 !important;
+        --rose:#efe5dc !important;
+        --rose-2:#f4ece5 !important;
+        --rose-3:#fbf7f2 !important;
+        --accent:#ba968f !important;
+        --accent-2:#98756f !important;
+        --accent-3:#856760 !important;
+        --gold:#c6af8e !important;
+        --green:#98a89a !important;
+        --ink:#413633 !important;
+        --shadow:0 18px 45px rgba(103,85,78,.10) !important;
+        --shadow-soft:0 10px 28px rgba(103,85,78,.06) !important;
+      }
+      body{
+        background:
+          radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 28%),
+          radial-gradient(circle at top right, rgba(255,255,255,.76), transparent 24%),
+          linear-gradient(180deg,#f8f4ef 0%,#f5efe8 54%,#f3ece6 100%) !important;
+      }
+      body::before{
+        background-image:
+          radial-gradient(circle at 18px 18px, rgba(159,132,123,.07) 2px, transparent 2px),
+          radial-gradient(circle at 58px 58px, rgba(159,132,123,.035) 1px, transparent 1px) !important;
+      }
+      h1,h2,h3,.hero h1,.section-head h2,.card h2,.card h3,.note-title,.post-title{
+        font-family: Georgia, "Times New Roman", "Songti SC", serif !important;
+        letter-spacing:.02em;
+      }
+      .hero{
+        background:
+          linear-gradient(135deg, rgba(255,255,255,.96), rgba(248,242,235,.95)),
+          linear-gradient(135deg, rgba(233,224,214,.24), rgba(255,255,255,0)) !important;
+        border-color: rgba(151,120,112,.18) !important;
+      }
+      .hero::before,.hero::after{
+        background:radial-gradient(circle, rgba(218,203,192,.56), rgba(218,203,192,0)) !important;
+      }
+      .ribbon,.tag,.pill,.phase-tag,.stat,.nav-wrap,.button.secondary,button.secondary{
+        border-color: rgba(151,120,112,.18) !important;
+      }
+      .ribbon,.tag,.pill,.phase-tag,.nav-link,.button.secondary,button.secondary{color:var(--accent-2) !important}
+      .button,button{
+        background:linear-gradient(135deg,#ab8780,#8f6d67) !important;
+        box-shadow:0 10px 24px rgba(120,95,88,.14) !important;
+      }
+      .button.ghost,button.ghost{background:#f6efe8 !important;color:var(--muted) !important}
+      .nav-wrap,.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card{
+        backdrop-filter: blur(10px);
+      }
+      .nav-wrap{
+        background:rgba(255,252,248,.78) !important;
+      }
+      .nav-link{
+        background:rgba(241,234,226,.8) !important;
+        border:1px solid rgba(151,120,112,.14) !important;
+      }
+      .nav-link:hover{background:#fffdf9 !important}
+      .card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card{border-color: rgba(151,120,112,.14) !important}
+      .card::before,.hero .ribbon::after{opacity:.75}
+      .mood-photo::after{background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,252,248,.82)) !important}
+      .hero p,.section-head p,.subtle,.small,.mood-caption,.footer{color:var(--muted) !important}
+      .luxe-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:16px}
+      .luxe-link-card{display:block;text-decoration:none;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(248,242,235,.88));border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft);color:inherit;transition:.22s ease}
+      .luxe-link-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+      .luxe-link-card strong{display:block;color:var(--ink);font-size:16px;margin-bottom:8px;font-family:Georgia,"Times New Roman","Songti SC",serif}
+      .luxe-link-card span{display:block;color:var(--muted);font-size:13px;line-height:1.8}
+      .collection-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+      .collection-card{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(249,244,238,.92));border:1px solid rgba(151,120,112,.14);border-radius:24px;padding:18px;box-shadow:var(--shadow-soft)}
+      .collection-card h3{margin:0 0 8px;color:var(--ink)}
+      .collection-card p{margin:0;color:var(--muted);line-height:1.8;font-size:14px}
+      .editorial-soft{position:relative;overflow:hidden}
+      .editorial-soft::after{content:"";position:absolute;inset:auto -20% -40% auto;width:180px;height:180px;border-radius:999px;background:radial-gradient(circle, rgba(207,190,178,.28), rgba(207,190,178,0));pointer-events:none}
+      @media (max-width:900px){.luxe-links,.collection-grid{grid-template-columns:1fr}}
+    </style>
+
+
+<style id="global-contrast-fix-v14">
+:root{
+  --bg:#fbf8fb !important;
+  --panel:#fffdfd !important;
+  --panel-2:#fff7fa !important;
+  --line:#ead7e1 !important;
+  --line-2:#d8b9c8 !important;
+  --text:#35262d !important;
+  --muted:#6a5962 !important;
+  --rose:#f7ebf1 !important;
+  --rose-2:#fdf4f8 !important;
+  --rose-3:#fffafd !important;
+  --accent:#8f5a72 !important;
+  --accent-2:#6e3f52 !important;
+  --accent-3:#563242 !important;
+  --gold:#caa2b6 !important;
+  --green:#8aa395 !important;
+  --ink:#281b21 !important;
+  --shadow:0 18px 40px rgba(88,52,68,.10) !important;
+  --shadow-soft:0 8px 24px rgba(88,52,68,.07) !important;
+}
+html,body{color:var(--text) !important;}
+body{
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 30%),
+    radial-gradient(circle at top right, rgba(255,255,255,.72), transparent 26%),
+    linear-gradient(180deg,#fffbfd 0%,#fbf5f8 48%,#f8f0f4 100%) !important;
+}
+body::before{
+  background-image:
+    radial-gradient(circle at 18px 18px, rgba(143,90,114,.06) 2px, transparent 2px),
+    radial-gradient(circle at 58px 58px, rgba(143,90,114,.03) 1px, transparent 1px) !important;
+}
+h1,h2,h3,h4,h5,h6,strong,.hero h1,.section-head h2,.card h2,.card h3,.post-title,.note-title{
+  color:var(--ink) !important;
+}
+p,.subtle,.small,.muted,.hero p,.section-head p,.footer,.mood-caption,.tiny,.excerpt,.content,.day-title,.callout,.stat small,.routine-item,.task-line,.task-row,.goal-card,.book-card,.journal-card,.mini-item,.empty{
+  color:var(--text) !important;
+}
+.small,.muted,.subtle,.hero p,.section-head p,.footer,.mood-caption,.tiny,.stat small,.day-title,.callout,.empty{
+  color:var(--muted) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.phase,.collection-card,.luxe-link-card,.hero,.nav-wrap,.sidebar .card{
+  border-color:rgba(111,63,82,.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.collection-card,.luxe-link-card{
+  background:rgba(255,255,255,.92) !important;
+}
+.button,button,input[type="submit"],input[type="button"],.action-btn,.primary-btn,.cta,.hero .button{
+  background:linear-gradient(135deg,#8f5a72,#6e3f52) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(110,63,82,.18) !important;
+  box-shadow:0 10px 24px rgba(110,63,82,.18) !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.button:hover,button:hover,input[type="submit"]:hover,input[type="button"]:hover,.action-btn:hover,.primary-btn:hover,.cta:hover{
+  filter:brightness(1.03) !important;
+}
+.button.secondary,button.secondary,.button.ghost,button.ghost,
+.nav-link,.tag,.pill,.phase-tag,.ribbon,.chip,.status-pill,.toolbar .chip,.badge,
+.control-row a.button.secondary,.control-row button.secondary,.control-row a.button.ghost,.control-row button.ghost{
+  background:#fff7fb !important;
+  color:#5c3244 !important;
+  border:1px solid rgba(111,63,82,.22) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.nav-link:hover,.button.secondary:hover,button.secondary:hover,.button.ghost:hover,button.ghost:hover{
+  background:#fffdfd !important;
+  color:#4f2b3a !important;
+}
+a,.link,summary,.tab,.menu-link{color:#6e3f52 !important;}
+a:hover,.link:hover,summary:hover,.tab:hover,.menu-link:hover{color:#4f2b3a !important;}
+label,legend{color:#6e3f52 !important;}
+input,textarea,select{
+  background:#fffdfd !important;
+  color:var(--text) !important;
+  border:1px solid rgba(111,63,82,.20) !important;
+}
+input::placeholder,textarea::placeholder{color:#8c7781 !important;}
+input:focus,textarea:focus,select:focus{
+  border-color:#8f5a72 !important;
+  box-shadow:0 0 0 4px rgba(143,90,114,.12) !important;
+}
+.task-line,.pill,.tag,.phase-tag,.ribbon,.stat,.mini-card,.callout,.day-cell.free{
+  background:#fff8fb !important;
+}
+progress,.progress{background:#f3e7ee !important;}
+.progress > span,.bar,.progress-fill{background:linear-gradient(90deg,#a76b86,#7a455c) !important;}
+hr,.divider{border-color:rgba(111,63,82,.12) !important;}
+::selection{background:#edd8e3;color:#2b1d23;}
+</style>
+
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="ribbon">🎀 study atelier · markdown + latex notes</div>
+      <h1>学习笔记页 · 像私人 wiki 一样整理学科、书籍与公式</h1>
+      <p>这页是单独的学习笔记空间：你可以按学科和书籍记笔记，直接写 Markdown，并在正文里用 <strong>$...$</strong> 或 <strong>$$...$$</strong> 录入 LaTeX 公式。适合整理 FRM、数学分析、概率论、量化面试题、因子研究和读书笔记。它和主控台共用同一份本地数据。</p>
+      <div class="control-row">
+        <a class="button" href="index_calendar_seeded_v11.html">返回主控台</a>
+        <a class="button secondary" href="journal_seeded_v11.html">日志页</a>
+        <a class="button secondary" href="workflow_notes_seeded_v11.html">工作流笔记页</a>
+        <a class="button secondary" href="finance_panel_seeded_v11.html">财务管理页</a>
+        <a class="button secondary" href="#editorSection">开始写笔记</a>
+      </div>
+      <div class="control-row"><a class="button secondary" href="index_calendar_seeded_v11.html">主控台</a><a class="button secondary" href="journal_seeded_v11.html">日志页</a><a class="button secondary" href="workflow_notes_seeded_v11.html">工作流</a><a class="button secondary" href="finance_panel_seeded_v11.html">财务</a><a class="button secondary" href="reading_lounge_seeded_v11.html">读书札记</a><a class="button secondary" href="travel_atelier_seeded_v11.html">旅行页</a><a class="button secondary" href="photo_wall_seeded_v11.html">照片墙</a><a class="button secondary" href="fitness_checkin_seeded_v11.html">健身打卡</a><a class="button secondary" href="manifestation_journal_seeded_v11.html">显化日记</a><a class="button secondary" href="divination_journal_seeded_v11.html">占卜日记</a></div>
+      <div class="mood-strip">
+        <div class="mood-card"><div class="mood-photo one"></div><div class="mood-caption">像法式学习手账一样，把每一章、每一道题和每个公式写成长期资产。</div></div>
+        <div class="mood-card"><div class="mood-photo two"></div><div class="mood-caption">做一页真正可复用的知识页：定义、公式、例题、易错点、推导脉络。</div></div>
+        <div class="mood-card"><div class="mood-photo three"></div><div class="mood-caption">Markdown 负责结构，LaTeX 负责表达，页面负责把它们变得好看。</div></div>
+        <div class="mood-card"><div class="mood-photo four"></div><div class="mood-caption">把你学过的内容从“做过”升级成“写成自己的知识库”。</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="card" id="editorSection">
+          <h2>写 / 编辑学习笔记</h2>
+          <p class="subtle">学科、书籍、正文都可以动态编辑。正文支持 Markdown，公式支持 LaTeX。正文保存后会自动保存在浏览器本地。</p>
+          <form id="noteForm">
+            <input type="hidden" id="noteId" />
+            <div class="form-grid">
+              <div>
+                <label for="noteDate">日期</label>
+                <input id="noteDate" type="date" />
+              </div>
+              <div>
+                <label for="noteType">笔记类型</label>
+                <select id="noteType">
+                  <option value="知识梳理">知识梳理</option>
+                  <option value="章节笔记">章节笔记</option>
+                  <option value="题目复盘">题目复盘</option>
+                  <option value="公式卡">公式卡</option>
+                  <option value="读书摘录">读书摘录</option>
+                  <option value="错题集">错题集</option>
+                </select>
+              </div>
+              <div>
+                <label for="noteSubject">学科</label>
+                <select id="noteSubject"></select>
+              </div>
+              <div>
+                <label for="noteBook">关联书籍</label>
+                <select id="noteBook"></select>
+              </div>
+            </div>
+            <div style="margin-top:12px;">
+              <label for="noteTitle">标题</label>
+              <input id="noteTitle" required placeholder="例如：BSM PDE 推导与 Greeks 之间的关系" />
+            </div>
+            <div style="margin-top:12px;">
+              <label for="noteTags">标签</label>
+              <input id="noteTags" placeholder="用逗号分隔，例如：FRM, Black-Scholes, PDE" />
+            </div>
+            <div class="helper small">
+              公式写法示例：行内公式 <code>$\sigma^2 T$</code>；块级公式 <code>$$dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$$</code>
+            </div>
+            <div style="margin-top:12px;">
+              <label for="noteContent">正文（Markdown + LaTeX）</label>
+              <div class="editor-toolbar">
+                <button type="button" class="secondary" data-snippet="# 标题\n\n## 小节\n">插入标题</button>
+                <button type="button" class="secondary" data-snippet="**重点：** ">粗体提示</button>
+                <button type="button" class="secondary" data-snippet="- 结论 1\n- 结论 2\n">列表</button>
+                <button type="button" class="secondary" data-snippet="> 这里写定义 / 引理 / 结论\n">引用块</button>
+                <button type="button" class="secondary" data-snippet="$$\n\\int_a^b f(x)\\,dx\n$$">块公式</button>
+                <button type="button" class="secondary" data-snippet="| 项 | 内容 |\n|---|---|\n| 1 | 2 |\n">表格</button>
+              </div>
+              <textarea id="noteContent" placeholder="在这里写 Markdown 笔记。可以整理定义、推导、题解、错题、复盘、书籍摘录。"></textarea>
+            </div>
+            <div class="control-row">
+              <button type="submit">保存笔记</button>
+              <button class="secondary" type="button" id="cancelEditBtn">取消编辑</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>筛选与检索</h2>
+          <div class="toolbar">
+            <div class="field">
+              <label for="searchInput">搜索</label>
+              <input id="searchInput" placeholder="搜索标题、正文、标签、公式关键词" />
+            </div>
+            <div class="field">
+              <label for="subjectFilter">按学科</label>
+              <select id="subjectFilter"><option value="">全部学科</option></select>
+            </div>
+            <div class="field">
+              <label for="bookFilter">按书籍</label>
+              <select id="bookFilter"><option value="">全部书籍</option></select>
+            </div>
+          </div>
+          <div class="small">适合把一门课拆成很多页：定义页、公式页、题目页、章节页、错题页。以后搜索时会非常快。</div>
+        </section>
+
+        <section class="card">
+          <h2>即时预览</h2>
+          <div class="small" style="margin-bottom:10px;">下面会实时预览你正在写的 Markdown 和 LaTeX 公式。</div>
+          <div class="preview" id="livePreview"></div>
+        </section>
+
+        <section class="card">
+          <h2>继续逛其它页面</h2>
+          <div class="small" style="margin-bottom:12px;">把主控台当成总面板，把学习笔记页当成你的知识库。</div>
+          <div class="control-row">
+            <a class="button secondary" href="journal_seeded_v11.html">打开日志页</a>
+            <a class="button secondary" href="workflow_notes_seeded_v11.html">打开工作流页</a>
+            <a class="button secondary" href="finance_panel_seeded_v11.html">打开财务页</a>
+          </div>
+        </section>
+      </aside>
+
+      <main>
+        <section class="card">
+          <h2>知识库概览</h2>
+          <div class="stats" id="statsGrid"></div>
+          <div class="pill-list" id="tagCloud" style="margin-top:14px;"></div>
+        </section>
+
+        <section class="card">
+          <div class="split">
+            <div>
+              <h2>最近学习笔记</h2>
+              <p class="subtle">每条笔记都能单独编辑、删除，并按学科 / 书籍 / 内容搜索。</p>
+            </div>
+            <div class="small" style="align-self:end;text-align:right;">建议把标题写得像知识库索引，方便以后检索。</div>
+          </div>
+          <div class="note-list" id="noteList" style="margin-top:14px;"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      study atelier · 与主控台共用浏览器本地数据 · Markdown + LaTeX 学习笔记空间
+    </div>
+  </div>
+
+  <script>
+    const APP_KEY = "rosePinkQuantDashboard_v4_seeded_2026_04_08_frm";
+    const DEFAULT_SUBJECTS = [
+      "工作","托福 AI","FRM","数学分析","高等代数","解析几何","概率论","统计学","统计回归",
+      "Python","高级 Python 编程","Python 金融数据分析","C++","数据结构","算法 / LeetCode",
+      "金融基础","金融数学","随机过程","数学基础复习","机器学习","深度学习 / CS",
+      "随机微积分","衍生品定价","风险管理","NLP","Shreve","量化宝典",
+      "行为面试","技术面试 / 策略讲解","简历迭代","内推网络","案例讲解",
+      "HireVue / Superday","求职投递","复盘 / 心得"
+    ];
+    const DEFAULT_NOTES = [
+      {
+        id: "study_seed_1",
+        date: "2026-04-20",
+        type: "公式卡",
+        subject: "FRM",
+        bookId: "",
+        title: "正态分布 VaR 与 ES 的基本公式",
+        tags: ["FRM","Risk","公式"],
+        content: "# VaR 与 ES\n\n设收益率服从正态分布，损失为 $L\\sim N(\\mu,\\sigma^2)$。\n\n## 1. VaR\n\n在置信度 $\\alpha$ 下：\n\n$$\n\\operatorname{VaR}_{\\alpha}(L)=\\mu+\\sigma z_{\\alpha}\n$$\n\n其中 $z_{\\alpha}$ 是标准正态分位点。\n\n## 2. ES\n\n$$\n\\operatorname{ES}_{\\alpha}(L)=\\mu+\\sigma \\frac{\\varphi(z_{\\alpha})}{1-\\alpha}\n$$\n\n- VaR 给出分位点\n- ES 给出超过分位点后的平均损失\n\n> 在 FRM 里，记住两者的定义差异比死背公式更重要。"
+      },
+      {
+        id: "study_seed_2",
+        date: "2026-04-22",
+        type: "章节笔记",
+        subject: "数学分析",
+        bookId: "",
+        title: "定积分存在性的判断框架",
+        tags: ["数学分析","定积分","白皮书"],
+        content: "# 定积分存在性的判断框架\n\n## 核心思路\n\n判断函数 $f(x)$ 在 $[a,b]$ 上是否可积，通常先看：\n\n1. 是否有界\n2. 是否只有有限个间断点\n3. 间断点是否可控制\n\n## 一个常用结论\n\n若 $f$ 在闭区间 $[a,b]$ 上连续，则一定 Riemann 可积。\n\n若 $f$ 单调，则也一定可积。\n\n$$\n\\int_a^b f(x)\\,dx = \\lim_{\\|P\\|\\to 0} \\sum_{i=1}^n f(\\xi_i)\\Delta x_i
+$$\n\n## 易错点\n\n- 不能把“几乎处处连续”和“初等函数”混成一个判断\n- 反常积分与定积分存在性不是同一件事"
+      },
+      {
+        id: "study_seed_3",
+        date: "2026-04-24",
+        type: "题目复盘",
+        subject: "衍生品定价",
+        bookId: "",
+        title: "Black–Scholes PDE 的推导脉络",
+        tags: ["Black-Scholes","PDE","衍生品"],
+        content: "# Black–Scholes PDE 的推导脉络\n\n设股票价格过程满足：\n\n$$\ndS_t = \\mu S_t\\,dt + \\sigma S_t\\,dW_t\n$$\n\n对期权价格 $V(S,t)$ 应用 It\\^o 引理：\n\n$$\ndV = \\left(\\frac{\\partial V}{\\partial t}+\\mu S\\frac{\\partial V}{\\partial S}+\\frac12\\sigma^2 S^2\\frac{\\partial^2V}{\\partial S^2}\\right)dt + \\sigma S\\frac{\\partial V}{\\partial S}dW_t
+$$\n\n构造无风险组合 $\\Pi = V-\\Delta S$，令 $\\Delta = \\frac{\\partial V}{\\partial S}$ 消去随机项，得到：\n\n$$\n\\frac{\\partial V}{\\partial t} + \\frac12\\sigma^2 S^2\\frac{\\partial^2V}{\\partial S^2} + rS\\frac{\\partial V}{\\partial S} - rV = 0
+$$\n\n## 记忆提示\n\n- 先写股票过程\n- 再写 It\\^o 引理\n- 再做 Delta hedge\n- 最后把漂移替换成 $r$"
+      }
+    ];
+
+    function uid(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
+    function isoToday(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+    function escapeHTML(text){return String(text||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
+    function normTags(value){return String(value||"").split(",").map(x=>x.trim()).filter(Boolean)}
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(APP_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return {
+          ...parsed,
+          books: Array.isArray(parsed.books) ? parsed.books : [],
+          studyNotes: Array.isArray(parsed.studyNotes) && parsed.studyNotes.length ? parsed.studyNotes : [...DEFAULT_NOTES]
+        };
+      }catch(e){
+        return {books:[], studyNotes:[...DEFAULT_NOTES]};
+      }
+    }
+    let state = loadState();
+
+    function saveState(){localStorage.setItem(APP_KEY, JSON.stringify(state)); renderAll()}
+    function subjects(){
+      const fromBooks = (state.books||[]).map(b=>b.subject).filter(Boolean);
+      const fromNotes = (state.studyNotes||[]).map(n=>n.subject).filter(Boolean);
+      return [...new Set([...DEFAULT_SUBJECTS, ...fromBooks, ...fromNotes])].sort((a,b)=>a.localeCompare(b,'zh-CN'));
+    }
+    function books(){
+      return [...(state.books||[])].sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'zh-CN'));
+    }
+    function allTags(){
+      return [...new Set((state.studyNotes||[]).flatMap(n=>Array.isArray(n.tags)?n.tags:[]))].sort((a,b)=>a.localeCompare(b,'zh-CN'));
+    }
+    function fillSubjectOptions(selected=""){
+      const options = subjects().map(s=>`<option value="${escapeHTML(s)}"${selected===s?' selected':''}>${escapeHTML(s)}</option>`).join('');
+      document.getElementById('noteSubject').innerHTML = options;
+      document.getElementById('subjectFilter').innerHTML = '<option value="">全部学科</option>' + subjects().map(s=>`<option value="${escapeHTML(s)}">${escapeHTML(s)}</option>`).join('');
+    }
+    function fillBookOptions(selected=""){
+      const optionStr = '<option value="">不关联书籍</option>' + books().map(b=>`<option value="${b.id}"${selected===b.id?' selected':''}>${escapeHTML(b.title)}${b.subject?` · ${escapeHTML(b.subject)}`:''}</option>`).join('');
+      document.getElementById('noteBook').innerHTML = optionStr;
+      document.getElementById('bookFilter').innerHTML = '<option value="">全部书籍</option>' + books().map(b=>`<option value="${b.id}">${escapeHTML(b.title)}</option>`).join('');
+    }
+
+    function renderMarkdown(src){
+      if(window.marked && typeof window.marked.parse === 'function'){
+        return window.marked.parse(src || '');
+      }
+      const escaped = escapeHTML(src || '');
+      return escaped
+        .replace(/^### (.*)$/gm,'<h3>$1</h3>')
+        .replace(/^## (.*)$/gm,'<h2>$1</h2>')
+        .replace(/^# (.*)$/gm,'<h1>$1</h1>')
+        .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+        .replace(/`([^`]+)`/g,'<code>$1</code>')
+        .replace(/^- (.*)$/gm,'<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/gs,'<ul>$1</ul>')
+        .replace(/\n\n/g,'</p><p>')
+        .replace(/^(?!<h|<ul|<li|<p|<blockquote|<pre)(.+)$/gm,'<p>$1</p>');
+    }
+
+    function bookTitleById(id){
+      return (state.books||[]).find(b=>b.id===id)?.title || '';
+    }
+
+    function renderPreview(target, content){
+      target.innerHTML = renderMarkdown(content || '');
+      if(window.MathJax && window.MathJax.typesetPromise){
+        window.MathJax.typesetPromise([target]).catch(()=>{});
+      }
+    }
+
+    function livePreview(){
+      renderPreview(document.getElementById('livePreview'), document.getElementById('noteContent').value);
+    }
+
+    function filteredNotes(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const subject = document.getElementById('subjectFilter').value;
+      const book = document.getElementById('bookFilter').value;
+      return [...(state.studyNotes||[])]
+        .sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))
+        .filter(note=>{
+          const hay = [
+            note.title, note.subject, note.content,
+            (note.tags||[]).join(' '), bookTitleById(note.bookId)
+          ].join(' ').toLowerCase();
+          return (!q || hay.includes(q)) &&
+                 (!subject || note.subject === subject) &&
+                 (!book || note.bookId === book);
+        });
+    }
+
+    function renderStats(){
+      const notes = state.studyNotes || [];
+      const linkedBooks = new Set(notes.map(n=>n.bookId).filter(Boolean)).size;
+      const stats = [
+        ['笔记总数', notes.length],
+        ['覆盖学科', new Set(notes.map(n=>n.subject).filter(Boolean)).size],
+        ['关联书籍', linkedBooks]
+      ];
+      document.getElementById('statsGrid').innerHTML = stats.map(([k,v])=>`<div class="stat"><div class="small">${k}</div><div class="v">${v}</div></div>`).join('');
+      const cloud = allTags();
+      document.getElementById('tagCloud').innerHTML = cloud.length ? cloud.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join('') : '<div class="empty">还没有标签，写几篇笔记后这里会变成你的知识地图。</div>';
+    }
+
+    function renderNotes(){
+      const wrap = document.getElementById('noteList');
+      const notes = filteredNotes();
+      if(!notes.length){
+        wrap.innerHTML = '<div class="empty">当前筛选下还没有笔记。你可以先写一页公式卡、章节梳理或题目复盘。</div>';
+        return;
+      }
+      wrap.innerHTML = notes.map(note=>{
+        const bookTitle = bookTitleById(note.bookId);
+        const previewId = `note_preview_${note.id}`;
+        return `
+          <article class="note-card">
+            <h3 class="note-title">${escapeHTML(note.title)}</h3>
+            <div class="note-meta">
+              <span class="tag">${escapeHTML(note.date || '')}</span>
+              <span class="tag">${escapeHTML(note.type || '笔记')}</span>
+              ${note.subject ? `<span class="tag">${escapeHTML(note.subject)}</span>` : ''}
+              ${bookTitle ? `<span class="tag">${escapeHTML(bookTitle)}</span>` : ''}
+              ${(note.tags||[]).map(tag=>`<span class="tag">${escapeHTML(tag)}</span>`).join('')}
+            </div>
+            <div class="note-preview"><div id="${previewId}" class="preview" style="min-height:unset;padding:0;border:none;background:transparent;"></div></div>
+            <div class="control-row">
+              <button class="secondary" type="button" onclick="editNote('${note.id}')">编辑</button>
+              <button class="secondary" type="button" onclick="deleteNote('${note.id}')">删除</button>
+            </div>
+          </article>`;
+      }).join('');
+      notes.forEach(note=>{
+        const el = document.getElementById(`note_preview_${note.id}`);
+        if(el) renderPreview(el, note.content || '');
+      });
+    }
+
+    function resetForm(){
+      document.getElementById('noteForm').reset();
+      document.getElementById('noteId').value = '';
+      document.getElementById('noteDate').value = isoToday();
+      document.getElementById('noteType').value = '知识梳理';
+      fillSubjectOptions(subjects()[0] || 'FRM');
+      fillBookOptions('');
+      document.getElementById('noteContent').value = '';
+      livePreview();
+    }
+
+    window.editNote = function(id){
+      const note = (state.studyNotes||[]).find(n=>n.id===id);
+      if(!note) return;
+      document.getElementById('noteId').value = note.id;
+      document.getElementById('noteDate').value = note.date || isoToday();
+      document.getElementById('noteType').value = note.type || '知识梳理';
+      fillSubjectOptions(note.subject || (subjects()[0] || 'FRM'));
+      fillBookOptions(note.bookId || '');
+      document.getElementById('noteTitle').value = note.title || '';
+      document.getElementById('noteTags').value = (note.tags||[]).join(', ');
+      document.getElementById('noteContent').value = note.content || '';
+      livePreview();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    window.deleteNote = function(id){
+      if(!confirm('删除这条学习笔记？')) return;
+      state.studyNotes = (state.studyNotes||[]).filter(n=>n.id!==id);
+      saveState();
+    }
+
+    function insertAtCursor(textarea, snippet){
+      const start = textarea.selectionStart || 0;
+      const end = textarea.selectionEnd || 0;
+      const current = textarea.value || '';
+      textarea.value = current.slice(0,start) + snippet + current.slice(end);
+      textarea.focus();
+      const pos = start + snippet.length;
+      textarea.setSelectionRange(pos,pos);
+      livePreview();
+    }
+
+    function renderAll(){
+      fillSubjectOptions(document.getElementById('noteSubject').value || '');
+      fillBookOptions(document.getElementById('noteBook').value || '');
+      renderStats();
+      renderNotes();
+      livePreview();
+    }
+
+    document.getElementById('noteForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      const payload = {
+        id: document.getElementById('noteId').value || uid(),
+        date: document.getElementById('noteDate').value || isoToday(),
+        type: document.getElementById('noteType').value,
+        subject: document.getElementById('noteSubject').value,
+        bookId: document.getElementById('noteBook').value,
+        title: document.getElementById('noteTitle').value.trim(),
+        tags: normTags(document.getElementById('noteTags').value),
+        content: document.getElementById('noteContent').value.trim()
+      };
+      if(!payload.title || !payload.content){
+        alert('请至少填写标题和正文。');
+        return;
+      }
+      if(document.getElementById('noteId').value){
+        state.studyNotes = (state.studyNotes||[]).map(n=>n.id===payload.id ? payload : n);
+      }else{
+        state.studyNotes = [payload, ...(state.studyNotes||[])];
+      }
+      saveState();
+      resetForm();
+    });
+
+    document.getElementById('cancelEditBtn').addEventListener('click', resetForm);
+    document.getElementById('searchInput').addEventListener('input', renderNotes);
+    document.getElementById('subjectFilter').addEventListener('change', renderNotes);
+    document.getElementById('bookFilter').addEventListener('change', renderNotes);
+    document.getElementById('noteContent').addEventListener('input', livePreview);
+    document.getElementById('noteTitle').addEventListener('input', ()=>{});
+    document.querySelectorAll('.editor-toolbar button[data-snippet]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        insertAtCursor(document.getElementById('noteContent'), (btn.dataset.snippet || '').replaceAll('\\n','\n'));
+      });
+    });
+
+    renderAll();
+    resetForm();
+  </script>
+</body>
+</html>

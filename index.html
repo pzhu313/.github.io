@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+<meta charset='UTF-8'/><meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+<title>Pei Zhu · Maison Atlas</title>
+<style>
+:root{--bg:#fff9fc;--cream:#fffdfc;--panel:#fffaf8;--panel-2:#fff4f7;--line:#efd7df;--line-2:#e8c1d0;--ink:#47313b;--muted:#7b6470;--rose:#efd2df;--rose-2:#f7e4eb;--accent:#b86f90;--accent-2:#92506c;--gold:#cfb187;--shadow:0 24px 60px rgba(180,122,150,.12);--shadow-soft:0 14px 34px rgba(180,122,150,.08);--radius:28px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Inter','PingFang SC','Microsoft YaHei',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 32%),radial-gradient(circle at top right, rgba(255,255,255,.9), transparent 28%),linear-gradient(180deg,#fffafc 0%, #fff6f8 45%, #fff3f6 100%);min-height:100vh}body::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle at 18px 18px, rgba(184,111,144,.08) 2px, transparent 2px),radial-gradient(circle at 56px 56px, rgba(184,111,144,.05) 1px, transparent 1px);background-size:82px 82px;opacity:.55}a{color:inherit}.shell{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:30px 22px 60px}.topbar{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:14px 18px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid var(--line);box-shadow:var(--shadow-soft);position:sticky;top:16px;backdrop-filter:blur(16px);z-index:10}.brand{display:flex;gap:14px;align-items:center}.brand-badge{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f7e6ee,#fff);border:1px solid var(--line-2);font-weight:800;color:var(--accent-2);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}.brand h1{margin:0;font-size:18px;letter-spacing:.04em}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.top-links{display:flex;flex-wrap:wrap;gap:10px}.top-links a{text-decoration:none;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.92);border:1px solid var(--line);color:var(--accent-2);font-size:13px;font-weight:700;box-shadow:var(--shadow-soft)}.layout{display:grid;grid-template-columns:300px 1fr;gap:22px;align-items:start}.sidebar{position:sticky;top:92px;display:flex;flex-direction:column;gap:16px}.panel{background:rgba(255,255,255,.86);border:1px solid rgba(232,193,208,.7);border-radius:30px;padding:20px;box-shadow:var(--shadow-soft)}.panel h2,.panel h3{margin:0 0 12px;font-family:'Georgia','Times New Roman',serif;letter-spacing:.02em}.panel h2{font-size:25px}.panel h3{font-size:18px}.muted{color:var(--muted);line-height:1.75}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--accent-2);margin-bottom:14px;box-shadow:var(--shadow-soft)}.hero{padding:30px 28px 28px;overflow:hidden;position:relative}.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle, rgba(239,210,223,.78), rgba(239,210,223,0));width:320px;height:320px}.hero::before{top:-110px;right:-110px}.hero::after{left:-90px;bottom:-140px}.hero-grid{position:relative;display:grid;grid-template-columns:1.5fr .9fr;gap:20px;align-items:start}.hero h2{margin:0 0 12px;font-family:'Georgia','Times New Roman',serif;font-size:clamp(34px,4vw,56px);line-height:1.08;max-width:13ch}.hero .lead{font-size:15px;line-height:1.9;color:var(--muted);max-width:66ch}.signature{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.88);border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--accent-2)}.button-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.button,.button-secondary{text-decoration:none;border-radius:999px;padding:12px 18px;font-weight:800;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:.18s ease}.button{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 16px 34px rgba(146,80,108,.18)}.button-secondary{background:#fff;color:var(--accent-2);border:1px solid var(--line);box-shadow:var(--shadow-soft)}.button:hover,.button-secondary:hover{transform:translateY(-1px)}.hero-card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow-soft)}.hero-card h3{margin:0 0 8px;font-size:18px}.metric{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.metric-card{padding:12px;border-radius:18px;background:var(--panel-2);border:1px solid rgba(232,193,208,.45)}.metric-card strong{display:block;color:var(--accent-2);font-size:18px;margin-bottom:4px}.metric-card span{font-size:12px;color:var(--muted);line-height:1.6}.quick-nav{display:grid;gap:10px}.quick-nav a{text-decoration:none;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.88);border:1px solid var(--line);font-weight:700;color:var(--accent-2)}.main{display:flex;flex-direction:column;gap:22px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;flex-wrap:wrap;margin-bottom:14px}.section-head h3{margin:0;font-family:'Georgia','Times New Roman',serif;font-size:30px}.section-head p{margin:0;color:var(--muted);line-height:1.7;max-width:70ch}.grid-3,.grid-2,.grid-4{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.room-card,.roadmap-card,.note-card{padding:18px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,245,248,.88));border:1px solid rgba(232,193,208,.6);box-shadow:var(--shadow-soft)}.room-card h4,.roadmap-card h4,.note-card h4{margin:0 0 8px;font-size:18px;font-family:'Georgia','Times New Roman',serif}.room-card p,.roadmap-card p,.note-card p{margin:0;color:var(--muted);line-height:1.75;font-size:14px}.room-card .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.mini-link{text-decoration:none;padding:9px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--accent-2)}.timeline{display:grid;gap:12px}.timeline .roadmap-card{position:relative;padding-left:22px}.timeline .roadmap-card::before{content:'';position:absolute;left:0;top:20px;width:8px;height:8px;border-radius:50%;background:var(--accent)}.footer{margin-top:26px;color:var(--muted);font-size:13px;line-height:1.8;text-align:center}@media (max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:static}.hero-grid,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}@media (max-width:680px){.shell{padding:16px 12px 36px}.topbar{border-radius:24px;top:10px}.hero{padding:22px 18px}.hero h2{font-size:34px}}
+
+/* v13 contrast fix */
+:root{--accent:#e8cad7 !important;--accent-2:#6f4757 !important;--accent-3:#5b3848 !important;--line:#dfc1cd !important;--line-2:#d4afbc !important;--text:#432b35 !important;--ink:#432b35 !important;--muted:#6f5a63 !important;}
+.button,.button-secondary,.button2,button,.top-links a,.quick-nav a,.mini-link,.nav-link,.phase-tag,.pill,.tag,.chip,.eyebrow{
+  color:var(--accent-2) !important;
+  border:1px solid var(--line) !important;
+  background:linear-gradient(180deg,#fffafc 0%,#f7e8ef 100%) !important;
+  box-shadow:0 10px 22px rgba(176,119,144,.10) !important;
+  text-shadow:none !important;
+}
+.button,.button-primary,button:not(.secondary):not(.ghost){
+  color:#5e3a4a !important;
+  background:linear-gradient(180deg,#fff9fc 0%,#f2dde7 100%) !important;
+}
+.top-links a:hover,.quick-nav a:hover,.mini-link:hover,.button:hover,.button-secondary:hover,.button2:hover,button:hover{
+  background:linear-gradient(180deg,#fffdfd 0%,#f6edf2 100%) !important;
+  transform:translateY(-1px);
+}
+.brand-badge,.seal{color:var(--accent-2) !important}
+label,.section-head h3,.hero h2,.panel h2,.panel h3,.card h3,.card h4,.room-card h4,.roadmap-card h4,.note-card h4,.hero-card h3{color:var(--text) !important}
+.hero .lead,.muted,.section-head p,.brand p,.metric-card span,.room-card p,.roadmap-card p,.note-card p{color:var(--muted) !important}
+
+</style>
+
+<style id="global-contrast-fix-v14">
+:root{
+  --bg:#fbf8fb !important;
+  --panel:#fffdfd !important;
+  --panel-2:#fff7fa !important;
+  --line:#ead7e1 !important;
+  --line-2:#d8b9c8 !important;
+  --text:#35262d !important;
+  --muted:#6a5962 !important;
+  --rose:#f7ebf1 !important;
+  --rose-2:#fdf4f8 !important;
+  --rose-3:#fffafd !important;
+  --accent:#8f5a72 !important;
+  --accent-2:#6e3f52 !important;
+  --accent-3:#563242 !important;
+  --gold:#caa2b6 !important;
+  --green:#8aa395 !important;
+  --ink:#281b21 !important;
+  --shadow:0 18px 40px rgba(88,52,68,.10) !important;
+  --shadow-soft:0 8px 24px rgba(88,52,68,.07) !important;
+}
+html,body{color:var(--text) !important;}
+body{
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.92), transparent 30%),
+    radial-gradient(circle at top right, rgba(255,255,255,.72), transparent 26%),
+    linear-gradient(180deg,#fffbfd 0%,#fbf5f8 48%,#f8f0f4 100%) !important;
+}
+body::before{
+  background-image:
+    radial-gradient(circle at 18px 18px, rgba(143,90,114,.06) 2px, transparent 2px),
+    radial-gradient(circle at 58px 58px, rgba(143,90,114,.03) 1px, transparent 1px) !important;
+}
+h1,h2,h3,h4,h5,h6,strong,.hero h1,.section-head h2,.card h2,.card h3,.post-title,.note-title{
+  color:var(--ink) !important;
+}
+p,.subtle,.small,.muted,.hero p,.section-head p,.footer,.mood-caption,.tiny,.excerpt,.content,.day-title,.callout,.stat small,.routine-item,.task-line,.task-row,.goal-card,.book-card,.journal-card,.mini-item,.empty{
+  color:var(--text) !important;
+}
+.small,.muted,.subtle,.hero p,.section-head p,.footer,.mood-caption,.tiny,.stat small,.day-title,.callout,.empty{
+  color:var(--muted) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.phase,.collection-card,.luxe-link-card,.hero,.nav-wrap,.sidebar .card{
+  border-color:rgba(111,63,82,.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+.card,.post-card,.note-card,.goal-card,.task-card,.book-card,.journal-card,.mini-card,.polaroid,.mood-card,.day-cell,.vision-note,.vision-link-card,.mini-item,.stat,.collection-card,.luxe-link-card{
+  background:rgba(255,255,255,.92) !important;
+}
+.button,button,input[type="submit"],input[type="button"],.action-btn,.primary-btn,.cta,.hero .button{
+  background:linear-gradient(135deg,#8f5a72,#6e3f52) !important;
+  color:#ffffff !important;
+  border:1px solid rgba(110,63,82,.18) !important;
+  box-shadow:0 10px 24px rgba(110,63,82,.18) !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.button:hover,button:hover,input[type="submit"]:hover,input[type="button"]:hover,.action-btn:hover,.primary-btn:hover,.cta:hover{
+  filter:brightness(1.03) !important;
+}
+.button.secondary,button.secondary,.button.ghost,button.ghost,
+.nav-link,.tag,.pill,.phase-tag,.ribbon,.chip,.status-pill,.toolbar .chip,.badge,
+.control-row a.button.secondary,.control-row button.secondary,.control-row a.button.ghost,.control-row button.ghost{
+  background:#fff7fb !important;
+  color:#5c3244 !important;
+  border:1px solid rgba(111,63,82,.22) !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+.nav-link:hover,.button.secondary:hover,button.secondary:hover,.button.ghost:hover,button.ghost:hover{
+  background:#fffdfd !important;
+  color:#4f2b3a !important;
+}
+a,.link,summary,.tab,.menu-link{color:#6e3f52 !important;}
+a:hover,.link:hover,summary:hover,.tab:hover,.menu-link:hover{color:#4f2b3a !important;}
+label,legend{color:#6e3f52 !important;}
+input,textarea,select{
+  background:#fffdfd !important;
+  color:var(--text) !important;
+  border:1px solid rgba(111,63,82,.20) !important;
+}
+input::placeholder,textarea::placeholder{color:#8c7781 !important;}
+input:focus,textarea:focus,select:focus{
+  border-color:#8f5a72 !important;
+  box-shadow:0 0 0 4px rgba(143,90,114,.12) !important;
+}
+.task-line,.pill,.tag,.phase-tag,.ribbon,.stat,.mini-card,.callout,.day-cell.free{
+  background:#fff8fb !important;
+}
+progress,.progress{background:#f3e7ee !important;}
+.progress > span,.bar,.progress-fill{background:linear-gradient(90deg,#a76b86,#7a455c) !important;}
+hr,.divider{border-color:rgba(111,63,82,.12) !important;}
+::selection{background:#edd8e3;color:#2b1d23;}
+</style>
+
+</head>
+<body>
+<div class='shell'>
+<div class='topbar'><div class='brand'><div class='brand-badge'>PZ</div><div><h1>Pei Zhu · Maison Atlas</h1><p>personal homepage · research garden · private studio</p></div></div><div class='top-links'><a href='research_atelier.html'>科研面板</a><a href='career_hq.html'>跳槽作战板</a><a href='application_atlas.html'>申请规划</a><a href='index_calendar_seeded_v11.html'>总控台</a></div></div>
+<div class='layout'>
+<aside class='sidebar'>
+<div class='panel'><h3>Maison 目录</h3><div class='quick-nav'><a href='#rooms'>Room directory</a><a href='#current-season'>Current season</a><a href='#research-vision'>Research vision</a><a href='index_calendar_seeded_v11.html'>执行总控台</a><a href='journal_seeded_v11.html'>日志页</a><a href='study_notes_seeded_v11.html'>学习笔记</a><a href='workflow_notes_seeded_v11.html'>工作流笔记</a><a href='finance_panel_seeded_v11.html'>财务页</a><a href='reading_lounge_seeded_v11.html'>读书札记</a><a href='travel_atelier_seeded_v11.html'>旅行页</a><a href='photo_wall_seeded_v11.html'>照片墙</a></div></div>
+<div class='panel'><h3>现在最重要的三条线</h3><p class='muted'>一条是 2026 年 9 月前冲 Goldman Sachs / Morgan Stanley 社招量化研究员；一条是建立自己的 Research Lab；一条是为 Princeton / Statistics / Financial Engineering 的长期申请积累数学、研究与材料资产。</p></div>
+<div class='panel'><h3>GitHub Pages 公开层</h3><p class='muted'>这个主页适合作为公开入口；执行系统、财务、显化、占卜、私人照片等内容继续留在本地私密层，不必直接公开。</p></div>
+</aside>
+<main class='main'>
+<section class='panel hero'><div class='hero-grid'><div><div class='eyebrow'>ivory maison · coquette notes · ballet discipline</div><h2>把执行系统、研究工作台、职业规划与个人生活收在同一个温柔但有秩序的空间里。</h2><p class='lead'>这个主页不是单纯的 dashboard，也不是单纯的博客。它更像一个私人 maison：对外可以展示你的研究方向、项目、阅读与职业路径；对内可以继续承载日历、FRM、学习笔记、工作流、日志、财务、照片与旅行记录。</p><div class='signature'><span class='chip'>Quant research</span><span class='chip'>Career transition</span><span class='chip'>Research notebook</span><span class='chip'>Princeton long-term plan</span><span class='chip'>ballet / coquette / french-soft</span></div><div class='button-row'><a class='button' href='research_atelier.html'>进入科研面板</a><a class='button-secondary' href='index_calendar_seeded_v11.html'>打开执行总控台</a><a class='button-secondary' href='career_hq.html'>查看 2026 跳槽规划</a></div></div><div class='hero-card'><h3>Current focus</h3><p class='muted'>把已有的量化研究经验、因子研究能力、代码能力和表达能力，打包成适合 2026 年秋季社招的 profile；同时建设一个能长期沉淀文献、实验、复现和心得的 Research Lab。</p><div class='metric'><div class='metric-card'><strong>2026</strong><span>目标：9 月前完成 GS / MS 量化研究社招冲刺</span></div><div class='metric-card'><strong>3 条</strong><span>主线：科研、跳槽、长期申请</span></div><div class='metric-card'><strong>1 个</strong><span>执行总控台继续承担日常节奏、FRM 与计划</span></div><div class='metric-card'><strong>∞</strong><span>主页作为公开入口，私密页继续留本地</span></div></div></div></div></section>
+<section class='panel' id='rooms'><div class='section-head'><div><h3>Maison rooms</h3><p>把所有页面重新整理成更像个人主页的结构：公开展示层放在前面，执行与私人记录继续作为内部房间存在。</p></div></div><div class='grid-3'><article class='room-card'><h4>Research Atelier</h4><p>论文库、研究笔记、复现代码与结果、研究心得与学科分支，一页看清你的研究资产如何沉淀。</p><div class='actions'><a class='mini-link' href='research_atelier.html'>进入科研面板</a><a class='mini-link' href='study_notes_seeded_v11.html'>专业学习笔记</a></div></article><article class='room-card'><h4>Career HQ</h4><p>围绕 2026 年 9 月的 GS / MS 量化研究社招，拆成岗位地图、准备面板、mock 记录和投递追踪。</p><div class='actions'><a class='mini-link' href='career_hq.html'>进入跳槽作战板</a><a class='mini-link' href='workflow_notes_seeded_v11.html'>工作流页</a></div></article><article class='room-card'><h4>Application Atlas</h4><p>把 Princeton MFin、统计、金融工程相关硕士 / 博士项目的长期申请拆成项目池、材料工坊和补课路线。</p><div class='actions'><a class='mini-link' href='application_atlas.html'>进入申请规划</a><a class='mini-link' href='reading_lounge_seeded_v11.html'>阅读与写作</a></div></article><article class='room-card'><h4>Dashboard & Calendar</h4><p>原来的主控台继续做执行层：日历、日计划、FRM、月目标、周任务、纲领与复盘。</p><div class='actions'><a class='mini-link' href='index_calendar_seeded_v11.html'>进入总控台</a><a class='mini-link' href='journal_seeded_v11.html'>日志页</a></div></article><article class='room-card'><h4>Private Life Archive</h4><p>旅行、照片墙、健身打卡、显化日记、占卜日记都继续保留在本地版，作为你的生活档案。</p><div class='actions'><a class='mini-link' href='travel_atelier_seeded_v11.html'>旅行页</a><a class='mini-link' href='photo_wall_seeded_v11.html'>照片墙</a><a class='mini-link' href='fitness_checkin_seeded_v11.html'>健身打卡</a></div></article><article class='room-card'><h4>Learning & Reading</h4><p>专业学习放到 Markdown / LaTeX 的学习笔记；非专业阅读放到读书札记，形成两条并行的成长线。</p><div class='actions'><a class='mini-link' href='study_notes_seeded_v11.html'>学习笔记</a><a class='mini-link' href='reading_lounge_seeded_v11.html'>读书札记</a></div></article></div></section>
+<section class='panel' id='current-season'><div class='section-head'><div><h3>Current season</h3><p>把近期职业目标和更远期的学术目标放在一个同心圆里，而不是互相打架。</p></div></div><div class='grid-2'><article class='roadmap-card'><h4>2026｜跳槽优先</h4><p>核心是把量化研究经验包装成可投递、可面试、可证明的 profile。优先事项包括：项目叙事、策略讲解、概率统计 / 金工 / 编程题库、mock、渠道与投递。</p></article><article class='roadmap-card'><h4>2027 以后｜长期申请线</h4><p>继续积累 Analysis / Probability / Statistics / Stochastic Process / Optimization 等学术资本，把研究项目、文档、作品集和推荐人关系做厚。</p></article></div><div class='timeline' style='margin-top:14px'><article class='roadmap-card'><h4>April → June 2026</h4><p>完成研究项目重包装，压实题库基础，形成 2–3 个核心可讲项目；科研面板里同步建立 paper → note → reproduction → reflection 的闭环。</p></article><article class='roadmap-card'><h4>July → September 2026</h4><p>进入 mock、投递、流程跟进和真实面试阶段；Career HQ 作为战情板，Dashboard 作为日常执行层。</p></article><article class='roadmap-card'><h4>Beyond</h4><p>Application Atlas 持续跟踪 Princeton / Statistics / Financial Engineering 相关申请，把职业路径与研究路径真正合并。</p></article></div></section>
+<section class='panel' id='research-vision'><div class='section-head'><div><h3>Research vision</h3><p>如果以后你把这个站点放到 GitHub Pages，最适合公开的部分，就是下面这几个层面。</p></div></div><div class='grid-4'><article class='note-card'><h4>Paper library</h4><p>用统一字段管理论文、PDF 路径、代码路径、学科分支、摘要与复现状态。</p></article><article class='note-card'><h4>Research notebook</h4><p>每次读论文、复现实验、推公式、看结果时都留下一条结构化笔记。</p></article><article class='note-card'><h4>Results board</h4><p>把复现项目、图表、指标、失败原因和下一步动作明确摆出来。</p></article><article class='note-card'><h4>Reflection</h4><p>记录你自己的判断：这篇论文值不值得做、哪里难、哪里可扩展、和量化研究有什么联系。</p></article></div></section>
+<div class='footer'>建议上线到 GitHub Pages 的文件是这个主页和科研 / 跳槽 / 申请等公开层页面；日历、财务、显化、占卜、私人照片与日志继续只保留本地使用。</div>
+</main></div></div></body></html>
